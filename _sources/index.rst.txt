@@ -8,8 +8,11 @@ contains meaningful signals before investing resources in complex anomaly
 detection pipelines. It provides a modular architecture spanning ingestion,
 transformation, exploration, detection, visualization, and simulation.
 
-.. image:: https://github.com/bancolombia/sentinel/actions/workflows/tests.yml/badge.svg
+.. image:: https://github.com/bancolombia/sentinel/actions/workflows/tests.yml/badge.svg?branch=develop
    :target: https://github.com/bancolombia/sentinel/actions/workflows/tests.yml
+
+.. image:: https://github.com/bancolombia/sentinel/actions/workflows/draft-pdf.yml/badge.svg?branch=develop
+   :target: https://github.com/bancolombia/sentinel/actions/workflows/draft-pdf.yml
 
 .. image:: https://img.shields.io/badge/License-Apache_2.0-blue.svg
    :target: https://github.com/bancolombia/sentinel/blob/main/LICENSE
