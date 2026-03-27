@@ -6,7 +6,7 @@
 
 [![CI](https://github.com/bancolombia/sentinel/actions/workflows/tests.yml/badge.svg)](https://github.com/bancolombia/sentinel/actions/workflows/tests.yml)
 [![Paper PDF](https://github.com/bancolombia/sentinel/actions/workflows/draft-pdf.yml/badge.svg)](https://github.com/bancolombia/sentinel/actions/workflows/draft-pdf.yml)
-[![DOI](https://zenodo.org/badge/1162599856.svg)](https://doi.org/10.5281/zenodo.19237989)
+[![DOI](https://zenodo.org/badge/1162599856.svg)](https://doi.org/10.5281/zenodo.19259903)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue)](https://www.python.org/)
 
