@@ -21,7 +21,7 @@ dev = [
     "ipykernel>=6.29.5",
     "nbformat>=4.2.0",
 ]
-deep = ["torch>=2.6.0", "ncps>=0.0.7"]
+deep = ["torch>=2.12.0", "ncps>=0.0.7"]
 viz = [
     "plotly>=5.0.0",
     "shap>=0.44.0",
