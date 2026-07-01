@@ -92,12 +92,16 @@ The **Visualization module** provides tools for analyzing anomaly detection resu
 The **Simulation module** enables testing of anomaly detection pipelines in streaming scenarios. Data can be processed in configurable chunks to emulate real-time ingestion pipelines, allowing practitioners to evaluate detection strategies under operational conditions.
  
 # Research Impact Statement
- 
-Sentinel contributes to research and operational practice by introducing a structured approach to **signal validation in log-based anomaly detection workflows**. By identifying datasets that lack sufficient statistical signal before applying computationally intensive models, the library helps practitioners focus analytical effort on data that can produce meaningful insights.
- 
-The modular architecture promotes reproducibility and extensibility. Researchers can experiment with different detectors while maintaining consistent preprocessing and validation steps. The parser interface enables support for additional log formats, allowing the library to adapt to new operational environments.
- 
-Support for enterprise log formats also addresses a practical gap between academic anomaly detection research and real-world operational data. Many anomaly detection studies rely on curated benchmark datasets, whereas production logs often require extensive preprocessing. Sentinel provides tools that bridge this gap, enabling researchers and practitioners to experiment with anomaly detection on real operational logs.
+
+Sentinel has demonstrated research and operational impact through its adoption in production and research activities within the organization. The software has been used to assess the analytical potential of operational data sources for service availability and anomaly detection studies, helping teams identify log datasets that contain sufficient statistical signal before investing effort in advanced analytics.
+
+To date, Sentinel has been applied to seven operational data sources, including Cortex XDR logs from three endpoint environments, as well as logs from HSM, HDC, WebSphere Application Server (WAS), and IBM MQ platforms. These evaluations have supported the selection of data sources suitable for observability and anomaly detection research.
+
+The software has been operational in production for approximately one year and currently supports analytical activities associated with five services. During this period, Sentinel has enabled the validation of log quality and analytical readiness in real-world environments, providing practical evidence of the applicability of its signal-validation approach.
+
+Sentinel has been utilized by three different teams across research and operational contexts, supporting investigations related to observability, service availability, and anomaly detection. By standardizing preprocessing, signal validation, and detector integration workflows, the software has facilitated reproducible experimentation while simultaneously supporting production monitoring activities.
+
+The combination of sustained production use, adoption across multiple teams, and application to diverse enterprise log sources demonstrates Sentinel's value as both a research-enabling platform and a practical operational analytics tool.
  
 # AI Usage Disclosure
  
