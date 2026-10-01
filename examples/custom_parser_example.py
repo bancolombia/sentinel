@@ -1,5 +1,8 @@
 """Example: creating a custom log parser by extending BaseLogParser."""
 
+import os
+import tempfile
+
 import pandas as pd
 from sentinel.ingestion import BaseLogParser
 
@@ -23,14 +26,16 @@ class SimpleCSVLogParser(BaseLogParser):
 
 
 def main():
-    # Create a sample CSV log file
+    # Create a sample CSV log file in the OS temp directory so the example works
+    # cross-platform (Windows, macOS, Linux).
     sample_data = "timestamp,level,message\n2025-01-01 00:00:00,INFO,Service started\n2025-01-01 00:01:00,ERROR,Connection timeout\n"
+    sample_path = os.path.join(tempfile.gettempdir(), "sample_log.csv")
 
-    with open("/tmp/sample_log.csv", "w") as f:
+    with open(sample_path, "w") as f:
         f.write(sample_data)
 
     # Parse it
-    parser = SimpleCSVLogParser("/tmp/sample_log.csv")
+    parser = SimpleCSVLogParser(sample_path)
     df = parser.parse()
     print(df)
     print(f"\nParsed {len(df)} log entries")

@@ -1,13 +1,17 @@
+[build-system]
+requires = ["setuptools>=69", "wheel", "setuptools_scm[toml]>=8"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "sentinel"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Signal validation and anomaly detection for log data"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 dependencies = [
     "matplotlib>=3.10.0",
-    "numpy>=2.2.3",
+    "numpy>=1.26.0,<2.2",
     "pandas>=2.2.3",
     "scikit-learn>=1.6.1",
     "scipy>=1.12.0",
@@ -24,7 +28,7 @@ dev = [
 deep = ["torch>=2.6.0", "ncps>=0.0.7"]
 viz = [
     "plotly>=5.0.0",
-    "shap>=0.44.0",
+    "shap>=0.44.0,<0.52.0",
 ]
 rrcf = ["rrcf>=0.4.0"]
 docs = [
@@ -40,3 +44,8 @@ all = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools_scm]
+version_file = "src/sentinel/_version.py"
+fallback_version = "1.0.1"
+tag_regex = "^v(?P<version>.*)$"

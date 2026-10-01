@@ -21,12 +21,23 @@ class IsolationForestDetector(BaseEstimator):
         self.max_samples = max_samples
         self.contamination = contamination
         self.random_state = random_state
-        self.model = IsolationForest(
+        self.model = self._build_model()
+
+    def _build_model(self):
+        """Create a fresh underlying IsolationForest from the wrapper settings."""
+        return IsolationForest(
             n_estimators=self.n_estimators,
             max_samples=self.max_samples,
             contamination=self.contamination,
-            random_state=self.random_state
+            random_state=self.random_state,
         )
+
+    def set_params(self, **params):
+        """Synchronize estimator parameters with the underlying sklearn model."""
+        super().set_params(**params)
+        if set(params).intersection({"n_estimators", "max_samples", "contamination", "random_state"}):
+            self.model = self._build_model()
+        return self
 
     def fit(self, X, y=None):
         """
@@ -117,6 +128,13 @@ class IsolationForestDetector(BaseEstimator):
         """
         Predict the probability of each sample being an anomaly.
 
+        The raw Isolation Forest decision score is already a calibrated measure
+        of how anomalous a sample is. A batch-wise min-max normalization makes the
+        result depend on the composition of the current prediction batch, which is
+        undesirable for a fitted detector. We convert the score to a stable
+        anomaly probability using a logistic transform that is independent of the
+        surrounding batch.
+
         Args
         
             X : array-like of shape (n_samples, n_features)
@@ -127,9 +145,16 @@ class IsolationForestDetector(BaseEstimator):
             proba : array-like of shape (n_samples,)
                 The probability of each sample being an anomaly.
         """
-        decision_scores = self.model.decision_function(X)
-        proba = (decision_scores - decision_scores.min()) / (decision_scores.max() - decision_scores.min())
-        return 1 - proba
+        decision_scores = np.asarray(self.model.decision_function(X), dtype=float)
+        if decision_scores.ndim == 0:
+            decision_scores = decision_scores.reshape(1)
+
+        # Lower scores indicate more anomalous observations. Mapping the
+        # decision score through a sigmoid keeps the probability bounded in
+        # [0, 1] without depending on the current batch composition.
+        logits = np.clip(-decision_scores, -500.0, 500.0)
+        proba = 1.0 / (1.0 + np.exp(logits))
+        return proba
 
 if __name__ == "__main__":
     # Example usage
