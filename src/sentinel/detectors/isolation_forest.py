@@ -21,12 +21,23 @@ class IsolationForestDetector(BaseEstimator):
         self.max_samples = max_samples
         self.contamination = contamination
         self.random_state = random_state
-        self.model = IsolationForest(
+        self.model = self._build_model()
+
+    def _build_model(self):
+        """Create a fresh underlying IsolationForest from the wrapper settings."""
+        return IsolationForest(
             n_estimators=self.n_estimators,
             max_samples=self.max_samples,
             contamination=self.contamination,
-            random_state=self.random_state
+            random_state=self.random_state,
         )
+
+    def set_params(self, **params):
+        """Synchronize estimator parameters with the underlying sklearn model."""
+        super().set_params(**params)
+        if set(params).intersection({"n_estimators", "max_samples", "contamination", "random_state"}):
+            self.model = self._build_model()
+        return self
 
     def fit(self, X, y=None):
         """
