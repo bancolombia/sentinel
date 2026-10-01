@@ -41,6 +41,12 @@ pip install ".[rrcf]"
 pip install -e ".[all]"
 ```
 
+To run the test suite locally after installing the dev dependencies:
+
+```bash
+pytest -q
+```
+
 ---
 
 ## Quick Start
