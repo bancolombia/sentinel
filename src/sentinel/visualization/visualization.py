@@ -318,7 +318,13 @@ class SHAPVisualizer:
             data=X.iloc[sample_index].values,
             feature_names=list(X.columns),
         )
-        shap.plots.waterfall(explanation)
+        try:
+            shap.plots.waterfall(explanation)
+        except (IndexError, ValueError):
+            # Some SHAP versions fail when the waterfall plot receives a scalar
+            # base value for a single sample. Fallback to the bar chart so the
+            # notebook remains usable without changing the API.
+            shap.plots.bar(explanation)
 
     def plot_bar(self, X):
         """Plot a SHAP bar chart of global feature importance.
