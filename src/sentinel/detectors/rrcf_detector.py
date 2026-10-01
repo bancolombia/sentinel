@@ -50,6 +50,21 @@ class RRCFDetector(BaseEstimator):
         self.index = None
         self.anomaly_scores = None
 
+    def _as_series(self, X):
+        """Normalize array-like inputs to a pandas Series for downstream RRCF operations."""
+        if isinstance(X, pd.Series):
+            return X.reset_index(drop=True)
+        if isinstance(X, pd.DataFrame):
+            if X.shape[1] != 1:
+                raise ValueError("RRCFDetector expects a 1D series-like input.")
+            return X.iloc[:, 0].reset_index(drop=True)
+        values = np.asarray(X, dtype=float)
+        if values.ndim == 0:
+            values = values.reshape(1)
+        if values.ndim > 1:
+            raise ValueError("RRCFDetector expects a 1D array-like input.")
+        return pd.Series(values)
+
     def fit(self, X, y=None):
         """Fit the model to the input data.
 
@@ -63,6 +78,7 @@ class RRCFDetector(BaseEstimator):
             self : object
                 Returns self.
         """
+        X = self._as_series(X)
         n = len(X)
         self.anomaly_scores = pd.Series(0.0, index=np.arange(n))
         
@@ -92,11 +108,11 @@ class RRCFDetector(BaseEstimator):
             scores : ndarray of shape (n_samples,)
                 Anomaly scores for each input sample.
         """
+        X = self._as_series(X)
         scores = np.zeros(len(X))
         
         for tree in self.forest:
             for i in range(len(X)):
-                point = X.iloc[i]
                 unique_index = (i, id(tree))
                 
                 if unique_index in tree.leaves:
