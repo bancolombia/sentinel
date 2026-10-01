@@ -1,4 +1,8 @@
 import numpy as np
+import pytest
+
+pytest.importorskip("torch")
+pytest.importorskip("rrcf")
 
 from sentinel.detectors import AutoencoderDetector, IsolationForestDetector, RRCFDetector
 from sentinel.ingestion.base_parser import BaseLogParser

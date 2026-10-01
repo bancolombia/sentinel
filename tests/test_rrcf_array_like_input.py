@@ -1,4 +1,7 @@
 import numpy as np
+import pytest
+
+pytest.importorskip("rrcf")
 
 from sentinel.detectors import RRCFDetector
 

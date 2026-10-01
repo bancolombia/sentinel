@@ -1,5 +1,6 @@
 import builtins
 import importlib.util
+import tempfile
 from pathlib import Path
 
 
@@ -24,5 +25,5 @@ def test_custom_parser_example_uses_os_temp_dir(monkeypatch):
     module.main()
 
     assert opened_paths
-    assert not any(path.startswith("/tmp/") for path in opened_paths)
+    assert all(Path(path).parent == Path(tempfile.gettempdir()) for path in opened_paths)
     assert any(Path(path).name == "sample_log.csv" for path in opened_paths)

@@ -1,4 +1,7 @@
 import numpy as np
+import pytest
+
+pytest.importorskip("torch")
 
 from sentinel.detectors import AutoencoderDetector
 
