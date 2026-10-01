@@ -290,8 +290,8 @@ time-indexed DataFrame with score and label columns.</p>
 
 <span class="n">viz</span> <span class="o">=</span> <span class="n">AnomalyVisualizer</span><span class="p">(</span>
     <span class="n">anomaly_df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>          <span class="c1"># time-indexed DataFrame</span>
-    <span class="n">score_col</span><span class="o">=</span><span class="s2">&quot;scores&quot;</span><span class="p">,</span>     <span class="c1"># column with anomaly scores</span>
-    <span class="n">anomaly_col</span><span class="o">=</span><span class="s2">&quot;anomaly&quot;</span><span class="p">,</span>  <span class="c1"># column with labels (-1 = anomaly, 1 = normal)</span>
+    <span class="n">score_col</span><span class="o">=</span><span class="s2">"scores"</span><span class="p">,</span>     <span class="c1"># column with anomaly scores</span>
+    <span class="n">anomaly_col</span><span class="o">=</span><span class="s2">"anomaly"</span><span class="p">,</span>  <span class="c1"># column with labels (-1 = anomaly, 1 = normal)</span>
     <span class="n">incidents_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>      <span class="c1"># optional: DataFrame with incident windows</span>
 <span class="p">)</span>
 </pre></div>
@@ -303,7 +303,7 @@ shaded regions on the charts.</p>
 <section id="static-plot-matplotlib">
 <h3>Static plot (matplotlib)<a class="headerlink" href="#static-plot-matplotlib" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span><span class="o">.</span><span class="n">plot_static</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Anomaly Detection Results&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Anomaly Detection Results"</span><span class="p">,</span>
     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
@@ -328,7 +328,7 @@ known incidents). This validates the detector.</p></li>
 Investigate these manually.</p></li>
 </ul>
 <p>You can zoom into a specific date range:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span><span class="o">.</span><span class="n">plot_static</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom_date</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-01-10&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-01-12&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span><span class="o">.</span><span class="n">plot_static</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom_date</span><span class="o">=</span><span class="p">[</span><span class="s2">"2025-01-10"</span><span class="p">,</span> <span class="s2">"2025-01-12"</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -374,7 +374,7 @@ below threshold).</p></li>
 </section>
 <section id="feature-overlay">
 <h3>Feature overlay<a class="headerlink" href="#feature-overlay" title="Link to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span><span class="o">.</span><span class="n">plot_features</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span><span class="o">.</span><span class="n">plot_features</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="s2">"memory"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><strong>What you see:</strong></p>
@@ -456,7 +456,7 @@ need the importance ranking without distribution details.</p></li>
 <section id="waterfall-chart-single-sample">
 <h3>Waterfall chart (single sample)<a class="headerlink" href="#waterfall-chart-single-sample" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explain a specific anomaly</span>
-<span class="n">anomaly_indices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">anomaly_indices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"anomaly"</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
 <span class="n">shap_viz</span><span class="o">.</span><span class="n">plot_waterfall</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sample_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -485,7 +485,7 @@ The width of each segment shows the magnitude of the contribution.</p>
 </section>
 <section id="dependence-plot">
 <h3>Dependence plot<a class="headerlink" href="#dependence-plot" title="Link to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shap_viz</span><span class="o">.</span><span class="n">plot_dependence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shap_viz</span><span class="o">.</span><span class="n">plot_dependence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">"cpu"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>What you see:</strong></p>
@@ -502,7 +502,7 @@ For example, “CPU only matters when it exceeds 80%.”</p></li>
 when memory is also high (red dots at top right).”</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the interaction feature explicitly</span>
-<span class="n">shap_viz</span><span class="o">.</span><span class="n">plot_dependence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">interaction_feature</span><span class="o">=</span><span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+<span class="n">shap_viz</span><span class="o">.</span><span class="n">plot_dependence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="n">interaction_feature</span><span class="o">=</span><span class="s2">"memory"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.explorer.report</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Structured result dataclasses for quality reports.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Structured result dataclasses for quality reports."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
@@ -259,12 +259,12 @@
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.CheckResult">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CheckResult</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Result of a single quality check.</span>
+<span class="w">    </span><span class="sd">"""Result of a single quality check.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
-<span class="sd">        Name of the check (e.g. ``&quot;min_entries&quot;``).</span>
+<span class="sd">        Name of the check (e.g. ``"min_entries"``).</span>
 <span class="sd">    passed : bool</span>
 <span class="sd">        Whether the check passed.</span>
 <span class="sd">    value : float</span>
@@ -273,7 +273,7 @@
 <span class="sd">        Threshold used for comparison.</span>
 <span class="sd">    column : str</span>
 <span class="sd">        Column the check was applied to.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">passed</span><span class="p">:</span> <span class="nb">bool</span>
@@ -282,8 +282,8 @@
     <span class="n">column</span><span class="p">:</span> <span class="nb">str</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;PASS&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed</span> <span class="k">else</span> <span class="s2">&quot;FAIL&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (threshold=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">"PASS"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed</span> <span class="k">else</span> <span class="s2">"FAIL"</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (threshold=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="si">}</span><span class="s2">)"</span></div>
 
 
 
@@ -291,7 +291,7 @@
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.QualityReport">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">QualityReport</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aggregated quality report containing multiple check results.</span>
+<span class="w">    </span><span class="sd">"""Aggregated quality report containing multiple check results.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -299,19 +299,19 @@
 <span class="sd">        Whether all checks passed.</span>
 <span class="sd">    checks : list of CheckResult</span>
 <span class="sd">        Individual check results.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">passed</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">checks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CheckResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">failed_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CheckResult</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return only the checks that failed.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Return only the checks that failed."""</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checks</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">passed</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fraction of checks that passed (0.0 to 1.0).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Fraction of checks that passed (0.0 to 1.0)."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">0.0</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checks</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">passed</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span>
@@ -319,7 +319,7 @@
 <div class="viewcode-block" id="QualityReport.interpret">
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.QualityReport.interpret">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a human-readable interpretation of the report.</span>
+<span class="w">        </span><span class="sd">"""Generate a human-readable interpretation of the report.</span>
 
 <span class="sd">        Analyzes which checks failed, explains what each failure means,</span>
 <span class="sd">        and provides actionable recommendations.</span>
@@ -328,7 +328,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
 <span class="sd">            Multi-line interpretation text.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">n_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span>
         <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checks</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">passed</span><span class="p">)</span>
@@ -337,18 +337,18 @@
         <span class="c1"># Overall verdict</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed</span><span class="p">:</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;SIGNAL DETECTED — All </span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s2"> checks passed &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;(score: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="sa">f</span><span class="s2">"SIGNAL DETECTED — All </span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s2"> checks passed "</span>
+                <span class="sa">f</span><span class="s2">"(score: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">)."</span>
             <span class="p">)</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="s2">&quot;The data has sufficient volume, variance, and anomaly &quot;</span>
-                <span class="s2">&quot;presence to proceed with anomaly detection.&quot;</span>
+                <span class="s2">"The data has sufficient volume, variance, and anomaly "</span>
+                <span class="s2">"presence to proceed with anomaly detection."</span>
             <span class="p">)</span>
-            <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
         <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;INSUFFICIENT SIGNAL — </span><span class="si">{</span><span class="n">n_failed</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s2"> checks failed &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;(score: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="sa">f</span><span class="s2">"INSUFFICIENT SIGNAL — </span><span class="si">{</span><span class="n">n_failed</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s2"> checks failed "</span>
+            <span class="sa">f</span><span class="s2">"(score: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">)."</span>
         <span class="p">)</span>
 
         <span class="c1"># Group failures by check name</span>
@@ -357,69 +357,69 @@
             <span class="n">failure_groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
         <span class="n">_explanations</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;min_entries&quot;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="s2">&quot;Not enough data points. The dataset has fewer rows than &quot;</span>
-                <span class="s2">&quot;the required minimum. Collect more data or use &quot;</span>
-                <span class="s2">&quot;Thresholds.relaxed() for exploratory analysis.&quot;</span>
+            <span class="s2">"min_entries"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Not enough data points. The dataset has fewer rows than "</span>
+                <span class="s2">"the required minimum. Collect more data or use "</span>
+                <span class="s2">"Thresholds.relaxed() for exploratory analysis."</span>
             <span class="p">),</span>
-            <span class="s2">&quot;min_non_null_pct&quot;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="s2">&quot;Too many missing values. Consider imputation, dropping &quot;</span>
-                <span class="s2">&quot;sparse columns, or investigating the data source.&quot;</span>
+            <span class="s2">"min_non_null_pct"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Too many missing values. Consider imputation, dropping "</span>
+                <span class="s2">"sparse columns, or investigating the data source."</span>
             <span class="p">),</span>
-            <span class="s2">&quot;min_variance&quot;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="s2">&quot;Near-constant signal. The column has very low variance, &quot;</span>
-                <span class="s2">&quot;meaning there is little variation for a detector to learn &quot;</span>
-                <span class="s2">&quot;from. Check if the column is informative or if the data &quot;</span>
-                <span class="s2">&quot;needs a different time range.&quot;</span>
+            <span class="s2">"min_variance"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Near-constant signal. The column has very low variance, "</span>
+                <span class="s2">"meaning there is little variation for a detector to learn "</span>
+                <span class="s2">"from. Check if the column is informative or if the data "</span>
+                <span class="s2">"needs a different time range."</span>
             <span class="p">),</span>
-            <span class="s2">&quot;anomaly_pct&quot;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="s2">&quot;Too few IQR outliers detected. The data distribution may &quot;</span>
-                <span class="s2">&quot;be too uniform, or the anomalies are subtle. Consider &quot;</span>
-                <span class="s2">&quot;domain-specific feature engineering or a different &quot;</span>
-                <span class="s2">&quot;detection method.&quot;</span>
+            <span class="s2">"anomaly_pct"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Too few IQR outliers detected. The data distribution may "</span>
+                <span class="s2">"be too uniform, or the anomalies are subtle. Consider "</span>
+                <span class="s2">"domain-specific feature engineering or a different "</span>
+                <span class="s2">"detection method."</span>
             <span class="p">),</span>
-            <span class="s2">&quot;correlation&quot;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="s2">&quot;Weak correlation between features and the label. The &quot;</span>
-                <span class="s2">&quot;features may not be predictive of the anomaly class. &quot;</span>
-                <span class="s2">&quot;Consider adding more informative features or reviewing &quot;</span>
-                <span class="s2">&quot;the labeling criteria.&quot;</span>
+            <span class="s2">"correlation"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Weak correlation between features and the label. The "</span>
+                <span class="s2">"features may not be predictive of the anomaly class. "</span>
+                <span class="s2">"Consider adding more informative features or reviewing "</span>
+                <span class="s2">"the labeling criteria."</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">checks</span> <span class="ow">in</span> <span class="n">failure_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">cols</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">column</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">checks</span><span class="p">)</span>
-            <span class="n">explanation</span> <span class="o">=</span> <span class="n">_explanations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;Check failed.&quot;</span><span class="p">)</span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  [</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">] Failed for: </span><span class="si">{</span><span class="n">cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    → </span><span class="si">{</span><span class="n">explanation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">column</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">checks</span><span class="p">)</span>
+            <span class="n">explanation</span> <span class="o">=</span> <span class="n">_explanations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">"Check failed."</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">] Failed for: </span><span class="si">{</span><span class="n">cols</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"    → </span><span class="si">{</span><span class="n">explanation</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="c1"># Recommendation</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;min_entries&quot;</span> <span class="ow">in</span> <span class="n">failure_groups</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">failure_groups</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"min_entries"</span> <span class="ow">in</span> <span class="n">failure_groups</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">failure_groups</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="s2">&quot;Recommendation: The only issue is data volume. If this is &quot;</span>
-                <span class="s2">&quot;a sample, try with the full dataset. Otherwise, use &quot;</span>
-                <span class="s2">&quot;Thresholds.relaxed() to proceed with exploratory analysis.&quot;</span>
+                <span class="s2">"Recommendation: The only issue is data volume. If this is "</span>
+                <span class="s2">"a sample, try with the full dataset. Otherwise, use "</span>
+                <span class="s2">"Thresholds.relaxed() to proceed with exploratory analysis."</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="s2">&quot;min_variance&quot;</span> <span class="ow">in</span> <span class="n">failure_groups</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">"min_variance"</span> <span class="ow">in</span> <span class="n">failure_groups</span><span class="p">:</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="s2">&quot;Recommendation: Review whether low-variance columns carry &quot;</span>
-                <span class="s2">&quot;useful information. Drop or transform them before detection.&quot;</span>
+                <span class="s2">"Recommendation: Review whether low-variance columns carry "</span>
+                <span class="s2">"useful information. Drop or transform them before detection."</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="s2">&quot;Recommendation: Address the failed checks above before &quot;</span>
-                <span class="s2">&quot;investing in anomaly detection pipelines. Use &quot;</span>
-                <span class="s2">&quot;Thresholds.relaxed() for a less strict assessment.&quot;</span>
+                <span class="s2">"Recommendation: Address the failed checks above before "</span>
+                <span class="s2">"investing in anomaly detection pipelines. Use "</span>
+                <span class="s2">"Thresholds.relaxed() for a less strict assessment."</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;PASSED&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed</span> <span class="k">else</span> <span class="s2">&quot;FAILED&quot;</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">"PASSED"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed</span> <span class="k">else</span> <span class="s2">"FAILED"</span>
         <span class="n">n_fail</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">failed_checks</span><span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;QualityReport(</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span><span class="si">}</span><span class="s2"> checks, </span><span class="si">{</span><span class="n">n_fail</span><span class="si">}</span><span class="s2"> failed)&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"QualityReport(</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span><span class="si">}</span><span class="s2"> checks, </span><span class="si">{</span><span class="n">n_fail</span><span class="si">}</span><span class="s2"> failed)"</span></div>
 
 </pre></div>
         </article>

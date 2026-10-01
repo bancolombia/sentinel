@@ -263,7 +263,7 @@
 <div class="viewcode-block" id="StreamingDataManager">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingDataManager">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StreamingDataManager</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    A class to manage streaming of data in chunks from a pandas DataFrame.</span>
 <span class="sd">    Attributes:</span>
 
@@ -281,7 +281,7 @@
 
 <span class="sd">        - thread (threading.Thread): The thread responsible for streaming data.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">chunk_size</span>
@@ -294,7 +294,7 @@
 <div class="viewcode-block" id="StreamingDataManager.start">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingDataManager.start">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Starts the streaming process in a separate thread.</span>
 
 <span class="sd">        This method sets the `streaming_active` flag to True and initializes</span>
@@ -305,14 +305,14 @@
 
 <span class="sd">            The thread runs as a daemon, meaning it will not block the program</span>
 <span class="sd">            from exiting if the main thread finishes execution.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_data</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
     
     <span class="k">def</span><span class="w"> </span><span class="nf">_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Streams data in chunks from the provided dataset.</span>
 
 <span class="sd">        This method continuously streams chunks of data from the `data` attribute </span>
@@ -341,7 +341,7 @@
 <span class="sd">        Yields:</span>
 
 <span class="sd">            None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
             <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
@@ -351,7 +351,7 @@
 <div class="viewcode-block" id="StreamingDataManager.get_next_chunk">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingDataManager.get_next_chunk">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_next_chunk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Retrieves the next chunk of data from the data queue.</span>
 <span class="sd">        This method attempts to fetch the next item from the `data_queue` within</span>
 <span class="sd">        the specified `stream_interval`. If the queue is empty and the timeout</span>
@@ -365,7 +365,7 @@
 <span class="sd">        Raises:</span>
 
 <span class="sd">            queue.Empty: If the queue is empty and no timeout is specified.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_interval</span><span class="p">)</span>
@@ -376,10 +376,10 @@
 <div class="viewcode-block" id="StreamingDataManager.stop">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingDataManager.stop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Stops the streaming process by setting the `streaming_active` flag to False.</span>
 <span class="sd">        If a thread is running, it waits for the thread to complete using `join()`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
@@ -411,7 +411,7 @@
                 <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Mark as normal (1)</span>
                 <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">random_score</span>
             <span class="c1"># Store the last element of the previous chunk for comparison</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;last_element&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'last_element'</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                     <span class="c1"># If the last element of the previous chunk is all 0 and the first of the current chunk is an anomaly</span>
                     <span class="n">random_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
@@ -443,7 +443,7 @@
 <div class="viewcode-block" id="StreamingSimulation">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingSimulation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StreamingSimulation</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">        Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</span>
 
 <span class="sd">        Attributes:</span>
@@ -477,7 +477,7 @@
 <span class="sd">            - streaming_active (bool): Indicates whether the streaming simulation is active.</span>
 
 <span class="sd">            - events (pd.DataFrame): DataFrame containing event start and end times, colors, and labels.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">dynamic_threshold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
@@ -498,7 +498,7 @@
 <div class="viewcode-block" id="StreamingSimulation.preprocess">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingSimulation.preprocess">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.</span>
 
 <span class="sd">        Args:</span>
@@ -508,13 +508,13 @@
 <span class="sd">        Returns:</span>
 
 <span class="sd">            np.ndarray: A NumPy array containing the preprocessed numeric data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">numeric_data</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">numeric_data</span><span class="o">.</span><span class="n">values</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_dynamic_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Calculate the dynamic threshold based on historical anomaly scores.</span>
 
 <span class="sd">        This method computes a dynamic threshold using the specified percentile</span>
@@ -525,13 +525,13 @@
 
 <span class="sd">            float: The calculated dynamic threshold based on the percentile of</span>
 <span class="sd">            historical scores, or the static threshold if no scores are available.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">percentile</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>  <span class="c1"># Fallback to static threshold if no scores are available</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Streams data from the data source in chunks and places each chunk into a queue.</span>
 <span class="sd">        This method iterates over the data source in increments of `chunk_size` and </span>
 <span class="sd">        streams each chunk into a queue for further processing. The streaming process </span>
@@ -557,7 +557,7 @@
 <span class="sd">            - streaming_active (bool): A flag to control the streaming process. If set </span>
 <span class="sd">                to False, the streaming stops.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
        
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span><span class="p">:</span>
@@ -567,7 +567,7 @@
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_interval</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_plot_from_main_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Continuously plots anomaly detection results and events in real-time from the main thread.</span>
 <span class="sd">        This method is designed to run in a loop, updating the plot with data from a queue until</span>
 <span class="sd">        the streaming process is deactivated and the queue is empty. It visualizes anomaly scores,</span>
@@ -587,7 +587,7 @@
 
 <span class="sd">        Interactive Mode:</span>
 
-<span class="sd">                - Uses Matplotlib&#39;s interactive mode (`plt.ion()`) to update the plot in real-time.</span>
+<span class="sd">                - Uses Matplotlib's interactive mode (`plt.ion()`) to update the plot in real-time.</span>
 
 <span class="sd">                - Ensures the plot is cleared and updated with new data during each iteration.</span>
 
@@ -602,9 +602,9 @@
 <span class="sd">            - This method assumes `self.plot_queue` is a thread-safe queue containing tuples of</span>
 <span class="sd">              filtered data and anomaly scores.</span>
 
-<span class="sd">            - The `self.events` attribute should be a DataFrame with columns &#39;start&#39;, &#39;end&#39;,</span>
-<span class="sd">              &#39;color&#39;, and &#39;label&#39; to define event visualization.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">            - The `self.events` attribute should be a DataFrame with columns 'start', 'end',</span>
+<span class="sd">              'color', and 'label' to define event visualization.</span>
+<span class="sd">        """</span>
         
         <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>  <span class="c1"># Enable interactive mode</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
@@ -612,32 +612,32 @@
                 <span class="n">filtered_data</span><span class="p">,</span> <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>  <span class="c1"># Clear the current figure</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">filtered_scores</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly Scores&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">filtered_scores</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Anomaly Scores'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
 
                 <span class="c1"># Determine the threshold (static or dynamic)</span>
                 <span class="n">current_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_dynamic_threshold</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_threshold</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">current_threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Threshold&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">current_threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'cyan'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Threshold'</span><span class="p">)</span>
 
                 <span class="c1"># Highlight anomalies</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_scores</span><span class="p">)):</span>
                     <span class="k">if</span> <span class="n">filtered_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="n">current_threshold</span><span class="p">:</span>
-                        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">filtered_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+                        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">filtered_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 
                 <span class="c1"># Plot events as vertical lines</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                        <span class="n">event_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">])</span>
-                        <span class="n">event_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
-                        <span class="n">color</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
-                        <span class="n">label</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+                        <span class="n">event_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'start'</span><span class="p">])</span>
+                        <span class="n">event_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'end'</span><span class="p">])</span>
+                        <span class="n">color</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">'color'</span><span class="p">]</span>
+                        <span class="n">label</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
                         <span class="k">if</span> <span class="n">event_start</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="o">==</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
-                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
                             <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">event_start</span><span class="p">,</span> <span class="n">event_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
 
-                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anomaly Detection with Events&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Time'</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Anomaly Score'</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Anomaly Detection with Events'</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
@@ -645,12 +645,12 @@
                 <span class="k">continue</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>  <span class="c1"># Disable interactive mode</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>  <span class="c1"># Close all figures to free memory</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>  <span class="c1"># Close all figures to free memory</span>
 
 <div class="viewcode-block" id="StreamingSimulation.process_stream">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingSimulation.process_stream">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">process_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Consume data from the queue and process it with the anomaly detector.</span>
 
 <span class="sd">        This method continuously retrieves data chunks from a queue, processes them,</span>
@@ -696,7 +696,7 @@
 <span class="sd">            - self.detector (object): Anomaly detector instance with `fit` and `detect` methods.</span>
 
 <span class="sd">            - self.plot_queue (queue.Queue): Queue to send data and scores for visualization.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -713,25 +713,25 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
 
                         <span class="n">anomaly_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="n">anomaly_count</span><span class="si">}</span><span class="s2"> anomalies in the current chunk.&quot;</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Detected </span><span class="si">{</span><span class="n">anomaly_count</span><span class="si">}</span><span class="s2"> anomalies in the current chunk."</span><span class="p">)</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
                         <span class="n">three_hours_ago</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
                         <span class="n">filtered_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">three_hours_ago</span><span class="p">]</span>
 
-                        <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">):]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">):]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">'constant'</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">filtered_data</span><span class="p">,</span> <span class="n">filtered_scores</span><span class="p">))</span>
             <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing stream: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error processing stream: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StreamingSimulation.run">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingSimulation.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Executes the streaming anomaly detection simulation.</span>
 
 <span class="sd">        This method starts two separate threads:</span>
@@ -748,7 +748,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">        </span>
 <span class="sd">            KeyboardInterrupt: If the simulation is manually stopped by the user.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
        
         <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -761,7 +761,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_plot_from_main_thread</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stopping simulation...&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Stopping simulation..."</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="n">stream_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
@@ -775,7 +775,7 @@
 <div class="viewcode-block" id="StreamingSimulation.run_notebook">
 <a class="viewcode-back" href="../../../api/simulation.html#sentinel.simulation.StreamingSimulation.run_notebook">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_notebook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the streaming simulation inside a Jupyter notebook.</span>
+<span class="w">        </span><span class="sd">"""Run the streaming simulation inside a Jupyter notebook.</span>
 
 <span class="sd">        Uses ``IPython.display.clear_output`` to animate the chart</span>
 <span class="sd">        inline.  Each iteration clears the previous frame and redraws,</span>
@@ -786,7 +786,7 @@
 <span class="sd">        max_steps : int or None, optional</span>
 <span class="sd">            Maximum number of chunks to process.  ``None`` means</span>
 <span class="sd">            process all data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">True</span>
@@ -844,35 +844,35 @@
             <span class="c1"># --- draw frame ---</span>
             <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vis_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">neg_scores</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-                    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">current_thr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
-                       <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Threshold (</span><span class="si">{</span><span class="n">current_thr</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vis_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">neg_scores</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s1">'Anomaly Score'</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">current_thr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+                       <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Threshold (</span><span class="si">{</span><span class="n">current_thr</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
 
             <span class="c1"># Anomaly markers</span>
             <span class="n">anom_mask</span> <span class="o">=</span> <span class="n">neg_scores</span> <span class="o">&gt;</span> <span class="n">current_thr</span>
             <span class="k">if</span> <span class="n">anom_mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
                     <span class="n">vis_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">anom_mask</span><span class="p">],</span> <span class="n">neg_scores</span><span class="p">[</span><span class="n">anom_mask</span><span class="p">],</span>
-                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Anomaly'</span><span class="p">,</span>
                 <span class="p">)</span>
 
             <span class="c1"># Event bands</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                    <span class="n">ev_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">])</span>
-                    <span class="n">ev_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
+                    <span class="n">ev_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s1">'start'</span><span class="p">])</span>
+                    <span class="n">ev_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s1">'end'</span><span class="p">])</span>
                     <span class="k">if</span> <span class="n">ev_start</span> <span class="o">&lt;=</span> <span class="n">vis_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">ev_end</span> <span class="o">&gt;=</span> <span class="n">vis_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-                        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">ev_start</span><span class="p">,</span> <span class="n">ev_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-                        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ev_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">ev_start</span><span class="p">,</span> <span class="n">ev_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">'color'</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ev_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">'color'</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
                         <span class="n">mid</span> <span class="o">=</span> <span class="n">ev_start</span> <span class="o">+</span> <span class="p">(</span><span class="n">ev_end</span> <span class="o">-</span> <span class="n">ev_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-                        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">ev</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
-                                <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">ev</span><span class="p">[</span><span class="s1">'label'</span><span class="p">],</span>
+                                <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ev</span><span class="p">[</span><span class="s1">'color'</span><span class="p">])</span>
 
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Streaming Anomaly Detection  —  chunk </span><span class="si">{</span><span class="n">step</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n_chunks</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time'</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Anomaly Score'</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Streaming Anomaly Detection  —  chunk </span><span class="si">{</span><span class="n">step</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n_chunks</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
             <span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
             <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
             <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
@@ -882,24 +882,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># Final frame stays visible</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Streaming Anomaly Detection  —  complete&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Streaming Anomaly Detection  —  complete'</span><span class="p">)</span>
         <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simulation complete. Processed </span><span class="si">{</span><span class="n">n_chunks</span><span class="si">}</span><span class="s2"> chunks, &quot;</span>
-              <span class="sa">f</span><span class="s2">&quot;total anomaly scores: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Simulation complete. Processed </span><span class="si">{</span><span class="n">n_chunks</span><span class="si">}</span><span class="s2"> chunks, "</span>
+              <span class="sa">f</span><span class="s2">"total anomaly scores: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
 </div>
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">data_source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../docs/notebooks/data/PDTI_Feb_11_2025.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">data_source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../../docs/notebooks/data/PDTI_Feb_11_2025.csv'</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
     
     <span class="c1"># Example events DataFrame</span>
     <span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2025-02-11 22:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-02-11 23:59:00&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2025-02-12 00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-02-12 00:11:00&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;color&#39;</span><span class="p">:[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;label&#39;</span><span class="p">:[</span><span class="s1">&#39;Reinicio Caja 1 HSM&#39;</span><span class="p">,</span> <span class="s1">&#39;Incidente Mi Bancolombia, entre otros&#39;</span><span class="p">]</span>
+        <span class="s1">'start'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'2025-02-11 22:00:00'</span><span class="p">,</span> <span class="s1">'2025-02-11 23:59:00'</span><span class="p">],</span>
+        <span class="s1">'end'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'2025-02-12 00:00:00'</span><span class="p">,</span> <span class="s1">'2025-02-12 00:11:00'</span><span class="p">],</span>
+        <span class="s1">'color'</span><span class="p">:[</span><span class="s1">'orange'</span><span class="p">,</span><span class="s1">'red'</span><span class="p">],</span>
+        <span class="s1">'label'</span><span class="p">:[</span><span class="s1">'Reinicio Caja 1 HSM'</span><span class="p">,</span> <span class="s1">'Incidente Mi Bancolombia, entre otros'</span><span class="p">]</span>
     <span class="p">})</span>
 
     <span class="n">dashboard</span> <span class="o">=</span> <span class="n">StreamingSimulation</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">dynamic_threshold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">)</span>

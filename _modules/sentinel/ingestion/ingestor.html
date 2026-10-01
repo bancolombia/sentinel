@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.ingestion.ingestor</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Convenience class for dispatching log parsing by type.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Convenience class for dispatching log parsing by type."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.hdc_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">HDCParser</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.hsm_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">HSMParser</span>
@@ -261,35 +261,35 @@
 <div class="viewcode-block" id="LogIngestor">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.LogIngestor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LogIngestor</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dispatch log file parsing based on log type identifier.</span>
+<span class="w">    </span><span class="sd">"""Dispatch log file parsing based on log type identifier.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    parsers : dict</span>
 <span class="sd">        Mapping of log type strings to their parser classes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">parsers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;HSM&quot;</span><span class="p">:</span> <span class="n">HSMParser</span><span class="p">,</span>
-        <span class="s2">&quot;HDC&quot;</span><span class="p">:</span> <span class="n">HDCParser</span><span class="p">,</span>
-        <span class="s2">&quot;IBM_MQ&quot;</span><span class="p">:</span> <span class="n">IBMMQParser</span><span class="p">,</span>
-        <span class="s2">&quot;WAS&quot;</span><span class="p">:</span> <span class="n">WASParser</span><span class="p">,</span>
-        <span class="s2">&quot;ZTNA&quot;</span><span class="p">:</span> <span class="n">ZTNAParser</span><span class="p">,</span>
+        <span class="s2">"HSM"</span><span class="p">:</span> <span class="n">HSMParser</span><span class="p">,</span>
+        <span class="s2">"HDC"</span><span class="p">:</span> <span class="n">HDCParser</span><span class="p">,</span>
+        <span class="s2">"IBM_MQ"</span><span class="p">:</span> <span class="n">IBMMQParser</span><span class="p">,</span>
+        <span class="s2">"WAS"</span><span class="p">:</span> <span class="n">WASParser</span><span class="p">,</span>
+        <span class="s2">"ZTNA"</span><span class="p">:</span> <span class="n">ZTNAParser</span><span class="p">,</span>
     <span class="p">}</span>
 
 <div class="viewcode-block" id="LogIngestor.ingest">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.LogIngestor.ingest">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">ingest</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">log_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse a log file using the appropriate parser.</span>
+<span class="w">        </span><span class="sd">"""Parse a log file using the appropriate parser.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file_path : str</span>
 <span class="sd">            Path to the log file.</span>
 <span class="sd">        log_type : str</span>
-<span class="sd">            Log type identifier (e.g. ``&#39;HSM&#39;``, ``&#39;HDC&#39;``, ``&#39;IBM_MQ&#39;``,</span>
-<span class="sd">            ``&#39;WAS&#39;``, ``&#39;ZTNA&#39;``). Case-insensitive.</span>
+<span class="sd">            Log type identifier (e.g. ``'HSM'``, ``'HDC'``, ``'IBM_MQ'``,</span>
+<span class="sd">            ``'WAS'``, ``'ZTNA'``). Case-insensitive.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -300,10 +300,10 @@
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If ``log_type`` is not supported.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">parser_class</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">log_type</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">parser_class</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported log type: </span><span class="si">{</span><span class="n">log_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported log type: </span><span class="si">{</span><span class="n">log_type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">parser</span> <span class="o">=</span> <span class="n">parser_class</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span></div>
 </div>

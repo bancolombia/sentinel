@@ -286,9 +286,9 @@ of numeric columns to analyze.</p>
 
 <span class="n">diag</span> <span class="o">=</span> <span class="n">SignalDiagnostics</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="s2">&quot;error_count&quot;</span><span class="p">],</span>
-    <span class="n">label_column</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>           <span class="c1"># optional: binary 0/1 column</span>
-    <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>   <span class="c1"># optional</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="s2">"memory"</span><span class="p">,</span> <span class="s2">"error_count"</span><span class="p">],</span>
+    <span class="n">label_column</span><span class="o">=</span><span class="s2">"label"</span><span class="p">,</span>           <span class="c1"># optional: binary 0/1 column</span>
+    <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">"timestamp"</span><span class="p">,</span>   <span class="c1"># optional</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -300,7 +300,7 @@ structured result:</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
 <span class="c1"># QualityReport(PASSED, 12 checks, 0 failed)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Score: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="c1"># Score: 100%</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">interpret</span><span class="p">())</span>
@@ -451,13 +451,13 @@ provided:</p>
 <p>Get per-column statistics for manual inspection:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Count:          </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Null %:         </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;null_pct&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Mean:           </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Std:            </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Variance:       </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  IQR anomalies:  </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;iqr_anomaly_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;iqr_anomaly_pct&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Count:          </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'count'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Null %:         </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'null_pct'</span><span class="p">]</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Mean:           </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std:            </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'std'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Variance:       </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'variance'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  IQR anomalies:  </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'iqr_anomaly_count'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">'iqr_anomaly_pct'</span><span class="p">]</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="how-to-read-the-summary">
@@ -478,7 +478,7 @@ clean or the column may not be informative.</p></li>
 <h3>Anomaly distribution<a class="headerlink" href="#anomaly-distribution" title="Link to this heading">¶</a></h3>
 <p>Quick IQR-based outlier analysis per column:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">anomaly_distribution</span><span class="p">()</span>
-<span class="c1"># {&#39;cpu&#39;: {&#39;method&#39;: &#39;iqr&#39;, &#39;anomaly_count&#39;: 15, &#39;anomaly_pct&#39;: 7.14}}</span>
+<span class="c1"># {'cpu': {'method': 'iqr', 'anomaly_count': 15, 'anomaly_pct': 7.14}}</span>
 </pre></div>
 </div>
 <p>This tells you how many data points fall outside <code class="docutils literal notranslate"><span class="pre">[Q1</span> <span class="pre">-</span> <span class="pre">1.5*IQR,</span> <span class="pre">Q3</span> <span class="pre">+</span> <span class="pre">1.5*IQR]</span></code>.
@@ -488,9 +488,9 @@ A healthy dataset for anomaly detection typically has 1–10% IQR outliers.</p>
 <h3>Correlation report (requires label column)<a class="headerlink" href="#correlation-report-requires-label-column" title="Link to this heading">¶</a></h3>
 <p>If you have a binary label column (0 = normal, 1 = anomaly), the correlation
 report measures how well each feature relates to the labels:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diag</span> <span class="o">=</span> <span class="n">SignalDiagnostics</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">],</span> <span class="n">label_column</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diag</span> <span class="o">=</span> <span class="n">SignalDiagnostics</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="s2">"memory"</span><span class="p">],</span> <span class="n">label_column</span><span class="o">=</span><span class="s2">"label"</span><span class="p">)</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">correlation_report</span><span class="p">()</span>
-<span class="c1"># {&#39;cpu&#39;: {&#39;point_biserial&#39;: 0.72, &#39;p_value&#39;: 1.2e-15}}</span>
+<span class="c1"># {'cpu': {'point_biserial': 0.72, 'p_value': 1.2e-15}}</span>
 </pre></div>
 </div>
 </section>
@@ -526,7 +526,7 @@ Values &lt; 0.05 are generally considered significant.</p>
 <h3>Predictive power (requires label column)<a class="headerlink" href="#predictive-power-requires-label-column" title="Link to this heading">¶</a></h3>
 <p>Evaluates each feature individually as a predictor using logistic regression:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">power</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">predictive_power</span><span class="p">()</span>
-<span class="c1"># {&#39;cpu&#39;: {&#39;recall&#39;: 0.85}, &#39;memory&#39;: {&#39;recall&#39;: 0.60}}</span>
+<span class="c1"># {'cpu': {'recall': 0.85}, 'memory': {'recall': 0.60}}</span>
 </pre></div>
 </div>
 <p><strong>Recall</strong> measures what fraction of actual anomalies the single-feature
@@ -556,10 +556,10 @@ model correctly identifies:</p>
 <h3>Quick report (all-in-one)<a class="headerlink" href="#quick-report-all-in-one" title="Link to this heading">¶</a></h3>
 <p>Run all diagnostics at once:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">full</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">quick_report</span><span class="p">(</span><span class="n">thresholds</span><span class="o">=</span><span class="n">Thresholds</span><span class="o">.</span><span class="n">relaxed</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">full</span><span class="p">[</span><span class="s2">&quot;interpretation&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full</span><span class="p">[</span><span class="s2">"interpretation"</span><span class="p">])</span>
 <span class="c1"># Access individual sections:</span>
-<span class="c1"># full[&quot;summary&quot;], full[&quot;quality_report&quot;], full[&quot;correlation&quot;],</span>
-<span class="c1"># full[&quot;anomaly_distribution&quot;], full[&quot;predictive_power&quot;]</span>
+<span class="c1"># full["summary"], full["quality_report"], full["correlation"],</span>
+<span class="c1"># full["anomaly_distribution"], full["predictive_power"]</span>
 </pre></div>
 </div>
 </section>
@@ -572,12 +572,12 @@ statistical properties of your data change over time — a common precursor
 to anomalies.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.explorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_drift</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">detect_drift</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">detect_drift</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Window [</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;start_idx&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;end_idx&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  KS statistic: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;statistic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  p-value:      </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;p_value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Drifted:      </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;drifted&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Window [</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'start_idx'</span><span class="p">]</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'end_idx'</span><span class="p">]</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  KS statistic: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'statistic'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  p-value:      </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Drifted:      </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'drifted'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="interpreting-drift-results">
@@ -617,8 +617,8 @@ changes, failures).</p></li>
 <p>A simple, fast outlier detection function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.explorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_anomalies</span>
 
-<span class="n">outliers</span> <span class="o">=</span> <span class="n">detect_anomalies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span><span class="si">}</span><span class="s2"> outliers out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">detect_anomalies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s2">"cpu"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span><span class="si">}</span><span class="s2"> outliers out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This returns the subset of rows where the value falls outside
@@ -632,12 +632,12 @@ optionally labeling rows based on an events file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.explorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_and_label</span>
 
 <span class="n">df</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">load_and_label</span><span class="p">(</span>
-    <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">],</span>
-    <span class="n">events_csv_path</span><span class="o">=</span><span class="s2">&quot;events.csv&quot;</span><span class="p">,</span>
-    <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+    <span class="s2">"data.csv"</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="s2">"memory"</span><span class="p">],</span>
+    <span class="n">events_csv_path</span><span class="o">=</span><span class="s2">"events.csv"</span><span class="p">,</span>
+    <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">"timestamp"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="c1"># df now has a &quot;label&quot; column: 1 = within an event window, 0 = normal</span>
+<span class="c1"># df now has a "label" column: 1 = within an event window, 0 = normal</span>
 </pre></div>
 </div>
 <p>This is particularly useful when you have incident records and want to

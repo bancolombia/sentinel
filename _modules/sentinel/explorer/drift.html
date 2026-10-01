@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.explorer.drift</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Statistical drift detection utilities.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Statistical drift detection utilities."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
@@ -263,9 +263,9 @@
     <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">window</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ks&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"ks"</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect statistical drift in a column using a sliding window.</span>
+<span class="w">    </span><span class="sd">"""Detect statistical drift in a column using a sliding window.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -276,14 +276,14 @@
 <span class="sd">    window : int</span>
 <span class="sd">        Size of each comparison window.</span>
 <span class="sd">    method : str</span>
-<span class="sd">        Detection method. Currently only ``&quot;ks&quot;`` (Kolmogorov-Smirnov) is supported.</span>
+<span class="sd">        Detection method. Currently only ``"ks"`` (Kolmogorov-Smirnov) is supported.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list of dict</span>
 <span class="sd">        Each dict contains ``start_idx``, ``end_idx``, ``statistic``, ``p_value``,</span>
 <span class="sd">        and ``drifted`` (True if p_value &lt; 0.05).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
 
@@ -298,11 +298,11 @@
         <span class="n">test</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window</span><span class="p">]</span>
         <span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ks_2samp</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;start_idx&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
-            <span class="s2">&quot;end_idx&quot;</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window</span><span class="p">,</span>
-            <span class="s2">&quot;statistic&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">stat</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
-            <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
-            <span class="s2">&quot;drifted&quot;</span><span class="p">:</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">,</span>
+            <span class="s2">"start_idx"</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+            <span class="s2">"end_idx"</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window</span><span class="p">,</span>
+            <span class="s2">"statistic"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">stat</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="s2">"p_value"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="s2">"drifted"</span><span class="p">:</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">,</span>
         <span class="p">})</span>
 
     <span class="k">return</span> <span class="n">results</span></div>

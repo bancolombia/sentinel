@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.detectors.rrcf_detector</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Robust Random Cut Forest anomaly detection implementation.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Robust Random Cut Forest anomaly detection implementation."""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">rrcf</span>
@@ -260,7 +260,7 @@
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RRCFDetector</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;    RRCFDetector: Robust Random Cut Forest anomaly detector.</span>
+<span class="w">    </span><span class="sd">"""    RRCFDetector: Robust Random Cut Forest anomaly detector.</span>
 
 <span class="sd">    This class implements anomaly detection using the Robust Random Cut Forest </span>
 <span class="sd">    algorithm for streaming anomaly detection.</span>
@@ -293,7 +293,7 @@
 
 <span class="sd">        - anomaly_scores : None or pd.Series</span>
 <span class="sd">            Series containing anomaly scores for the input data.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shingle_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">num_trees</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tree_size</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shingle_size</span> <span class="o">=</span> <span class="n">shingle_size</span>
@@ -303,10 +303,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span> <span class="o">=</span> <span class="kc">None</span>
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_as_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Normalize array-like inputs to a pandas Series for downstream RRCF operations."""</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"RRCFDetector expects a 1D series-like input."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"RRCFDetector expects a 1D array-like input."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
 <div class="viewcode-block" id="RRCFDetector.fit">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector.fit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model to the input data.</span>
+<span class="w">        </span><span class="sd">"""Fit the model to the input data.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -317,7 +332,8 @@
 <span class="sd">        </span>
 <span class="sd">            self : object</span>
 <span class="sd">                Returns self.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_series</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
         
@@ -338,7 +354,7 @@
 <div class="viewcode-block" id="RRCFDetector.predict">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector.predict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate anomaly scores for input data.</span>
+<span class="w">        </span><span class="sd">"""Calculate anomaly scores for input data.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -349,12 +365,12 @@
 <span class="sd">        </span>
 <span class="sd">            scores : ndarray of shape (n_samples,)</span>
 <span class="sd">                Anomaly scores for each input sample.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_series</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
         
         <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">forest</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-                <span class="n">point</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="n">unique_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
                 
                 <span class="k">if</span> <span class="n">unique_index</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">leaves</span><span class="p">:</span>
@@ -368,7 +384,7 @@
 <div class="viewcode-block" id="RRCFDetector.fit_predict">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector.fit_predict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model and calculate anomaly scores.</span>
+<span class="w">        </span><span class="sd">"""Fit the model and calculate anomaly scores.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -379,7 +395,7 @@
 <span class="sd">        </span>
 <span class="sd">            anomaly_scores : Series of shape (n_samples,)</span>
 <span class="sd">                Anomaly scores for each input sample.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span></div>
@@ -388,7 +404,7 @@
 <div class="viewcode-block" id="RRCFDetector.get_anomalies">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector.get_anomalies">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_anomalies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identify anomalies based on a threshold.</span>
+<span class="w">        </span><span class="sd">"""Identify anomalies based on a threshold.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -399,16 +415,16 @@
 <span class="sd">        </span>
 <span class="sd">            anomalies : Series</span>
 <span class="sd">                Series containing anomaly scores above the threshold.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model must be fit before getting anomalies.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Model must be fit before getting anomalies."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="RRCFDetector.predict_proba">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.RRCFDetector.predict_proba">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate normalized probability-like anomaly scores.</span>
+<span class="w">        </span><span class="sd">"""Calculate normalized probability-like anomaly scores.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -419,7 +435,7 @@
 <span class="sd">        </span>
 <span class="sd">            proba : ndarray of shape (n_samples,)</span>
 <span class="sd">                Normalized anomaly scores.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">max_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
         
@@ -432,7 +448,7 @@
 
 
 <span class="c1"># Example usage:</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="c1"># Generate some sample data</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -447,8 +463,8 @@
     <span class="n">anomalies</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">get_anomalies</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 
     <span class="c1"># Print the results</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anomaly Scores:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">anomaly_scores</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anomalies:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Anomaly Scores:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">anomaly_scores</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Anomalies:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">)</span>
 </pre></div>
         </article>
       </div>

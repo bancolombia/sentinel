@@ -627,9 +627,9 @@ excel at modeling continuous-time dynamics.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">history</span></code> dict contains <code class="docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code> and optionally <code class="docutils literal notranslate"><span class="pre">&quot;val&quot;</span></code> loss curves,
 useful for diagnosing training issues:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train Loss&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Epoch&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="s2">"train"</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Train Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Epoch"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Loss"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -645,8 +645,8 @@ If it oscillates, reduce <code class="docutils literal notranslate"><span class=
 <li><p>When you want to experiment with cutting-edge architectures</p></li>
 </ul>
 <p>Both deep detectors support model persistence:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">&quot;models/my_detector.pt&quot;</span><span class="p">)</span>
-<span class="n">detector</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s2">&quot;models/my_detector.pt&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">"models/my_detector.pt"</span><span class="p">)</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s2">"models/my_detector.pt"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -658,7 +658,7 @@ If it oscillates, reduce <code class="docutils literal notranslate"><span class=
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">ZScoreDetector</span><span class="p">(</span><span class="n">BaseCustomDetector</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple Z-score based anomaly detector.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Simple Z-score based anomaly detector."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -692,12 +692,12 @@ method is optional but recommended for visualization and threshold tuning.</p>
 <span class="c1"># Try IsolationForest first (fast, interpretable)</span>
 <span class="n">iso</span> <span class="o">=</span> <span class="n">IsolationForestDetector</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">iso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;iso_scores&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">iso</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;iso_pred&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"iso_scores"</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">iso</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"iso_pred"</span><span class="p">]</span> <span class="o">=</span> <span class="n">iso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Visualize results</span>
-<span class="n">viz</span> <span class="o">=</span> <span class="n">AnomalyVisualizer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s2">&quot;iso_scores&quot;</span><span class="p">,</span> <span class="n">anomaly_col</span><span class="o">=</span><span class="s2">&quot;iso_pred&quot;</span><span class="p">)</span>
-<span class="n">viz</span><span class="o">.</span><span class="n">plot_static</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Isolation Forest&quot;</span><span class="p">)</span>
+<span class="n">viz</span> <span class="o">=</span> <span class="n">AnomalyVisualizer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s2">"iso_scores"</span><span class="p">,</span> <span class="n">anomaly_col</span><span class="o">=</span><span class="s2">"iso_pred"</span><span class="p">)</span>
+<span class="n">viz</span><span class="o">.</span><span class="n">plot_static</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Isolation Forest"</span><span class="p">)</span>
 <span class="n">viz</span><span class="o">.</span><span class="n">plot_score_distribution</span><span class="p">()</span>
 
 <span class="c1"># If results look good → done</span>

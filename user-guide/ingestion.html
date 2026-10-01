@@ -313,7 +313,7 @@ so you can focus on analysis instead of parsing.</p>
 <p>The simplest approach — <code class="docutils literal notranslate"><span class="pre">LogIngestor</span></code> picks the right parser for you:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.ingestion</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogIngestor</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">LogIngestor</span><span class="o">.</span><span class="n">ingest</span><span class="p">(</span><span class="s2">&quot;path/to/logfile.log&quot;</span><span class="p">,</span> <span class="n">log_type</span><span class="o">=</span><span class="s2">&quot;WAS&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">LogIngestor</span><span class="o">.</span><span class="n">ingest</span><span class="p">(</span><span class="s2">"path/to/logfile.log"</span><span class="p">,</span> <span class="n">log_type</span><span class="o">=</span><span class="s2">"WAS"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>       <span class="c1"># (n_entries, n_columns)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>      <span class="c1"># all columns start as object/string</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -339,7 +339,7 @@ Always check <code class="docutils literal notranslate"><span class="pre">df.emp
 <h2>Using a parser directly<a class="headerlink" href="#using-a-parser-directly" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.ingestion</span><span class="w"> </span><span class="kn">import</span> <span class="n">WASParser</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">WASParser</span><span class="p">(</span><span class="s2">&quot;path/to/was_log.log&quot;</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">WASParser</span><span class="p">(</span><span class="s2">"path/to/was_log.log"</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -354,25 +354,25 @@ receives <code class="docutils literal notranslate"><span class="pre">file_path<
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MyAppParser</span><span class="p">(</span><span class="n">BaseLogParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for my custom application logs.</span>
+<span class="w">    </span><span class="sd">"""Parser for my custom application logs.</span>
 
 <span class="sd">    Expected format: TIMESTAMP|LEVEL|MESSAGE</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+                <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"|"</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                     <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="s2">"level"</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s2">"message"</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                     <span class="p">})</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">MyAppParser</span><span class="p">(</span><span class="s2">&quot;path/to/custom.log&quot;</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">MyAppParser</span><span class="p">(</span><span class="s2">"path/to/custom.log"</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -394,7 +394,7 @@ with replacement characters. Use <code class="docutils literal notranslate"><spa
 <h2>Interpreting the output<a class="headerlink" href="#interpreting-the-output" title="Link to this heading">¶</a></h2>
 <p>After ingestion, inspect your DataFrame to understand what you’re working with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># How many log entries were parsed?</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entries: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Entries: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># What columns are available?</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
@@ -402,11 +402,11 @@ with replacement characters. Use <code class="docutils literal notranslate"><spa
 <span class="c1"># How many null values per column?</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
-<span class="c1"># What&#39;s the time range?</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;From: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;To:   </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Span: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># What's the time range?</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"From: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"To:   </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Span: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A healthy ingestion result typically shows:</p>

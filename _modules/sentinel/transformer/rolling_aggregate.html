@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.transformer.rolling_aggregate</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Rolling aggregate transformer for anomaly detection pipelines.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Rolling aggregate transformer for anomaly detection pipelines."""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
@@ -259,7 +259,7 @@
 <div class="viewcode-block" id="RollingAggregator">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.RollingAggregator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RollingAggregator</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rolling aggregate transformer for scikit-learn pipelines.</span>
+<span class="w">    </span><span class="sd">"""Rolling aggregate transformer for scikit-learn pipelines.</span>
 
 <span class="sd">    Computes rolling, expanding, or exponentially weighted moving</span>
 <span class="sd">    window aggregations on time series data.</span>
@@ -268,32 +268,32 @@
 <span class="sd">    ----------</span>
 <span class="sd">    window_size : int</span>
 <span class="sd">        Size of the rolling window.</span>
-<span class="sd">    aggregation_functions : str, callable, or list, default=&#39;mean&#39;</span>
+<span class="sd">    aggregation_functions : str, callable, or list, default='mean'</span>
 <span class="sd">        Functions to apply. Can be a pandas rolling method name,</span>
 <span class="sd">        a callable, or a list of either.</span>
 <span class="sd">    columns : str or list of str, optional</span>
 <span class="sd">        Columns to aggregate. If ``None``, all numeric columns are used.</span>
-<span class="sd">    window_type : str, default=&#39;fixed&#39;</span>
-<span class="sd">        One of ``&#39;fixed&#39;``, ``&#39;expanding&#39;``, or ``&#39;ewm&#39;``.</span>
+<span class="sd">    window_type : str, default='fixed'</span>
+<span class="sd">        One of ``'fixed'``, ``'expanding'``, or ``'ewm'``.</span>
 <span class="sd">    min_periods : int, optional</span>
 <span class="sd">        Minimum observations required. Defaults to ``window_size``.</span>
 <span class="sd">    center : bool, default=False</span>
 <span class="sd">        Whether to center the window.</span>
-<span class="sd">    suffix : str, default=&#39;_rolling&#39;</span>
+<span class="sd">    suffix : str, default='_rolling'</span>
 <span class="sd">        Suffix appended to new column names.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Extra arguments passed to the rolling function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">window_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">aggregation_functions</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+        <span class="n">aggregation_functions</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'mean'</span><span class="p">,</span>
         <span class="n">columns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">window_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">,</span>
+        <span class="n">window_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'fixed'</span><span class="p">,</span>
         <span class="n">min_periods</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;_rolling&#39;</span><span class="p">,</span>
+        <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'_rolling'</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
@@ -307,21 +307,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
         
     <span class="k">def</span><span class="w"> </span><span class="nf">_validate_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the parameters passed to the transformer.&quot;&quot;&quot;</span>
-        <span class="n">valid_window_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="s1">&#39;expanding&#39;</span><span class="p">,</span> <span class="s1">&#39;ewm&#39;</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">"""Validate the parameters passed to the transformer."""</span>
+        <span class="n">valid_window_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'fixed'</span><span class="p">,</span> <span class="s1">'expanding'</span><span class="p">,</span> <span class="s1">'ewm'</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_window_types</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;window_type must be one of </span><span class="si">{</span><span class="n">valid_window_types</span><span class="si">}</span><span class="s2">, &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_type</span><span class="si">}</span><span class="s2"> instead.&quot;</span>
+                <span class="sa">f</span><span class="s2">"window_type must be one of </span><span class="si">{</span><span class="n">valid_window_types</span><span class="si">}</span><span class="s2">, "</span>
+                <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_type</span><span class="si">}</span><span class="s2"> instead."</span>
             <span class="p">)</span>
         
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;window_size must be at least 1, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="si">}</span><span class="s2"> instead.&quot;</span>
+                <span class="sa">f</span><span class="s2">"window_size must be at least 1, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="si">}</span><span class="s2"> instead."</span>
             <span class="p">)</span>
             
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_aggregation_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Converts the `aggregation_functions` attribute into a list of functions.</span>
 
 <span class="sd">        If `aggregation_functions` is a single string or callable, it wraps it in a list.</span>
@@ -330,14 +330,14 @@
 <span class="sd">        Returns:</span>
 
 <span class="sd">            List: A list containing aggregation functions, either as strings or callables.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
        
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregation_functions</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregation_functions</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregation_functions</span>
     
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_feature_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generate feature names for the transformed DataFrame based on the specified columns </span>
 <span class="sd">        and aggregation functions.</span>
 
@@ -359,7 +359,7 @@
 <span class="sd">            - If `self.columns` is a list, it is treated as a list of column names.</span>
 
 <span class="sd">            - Aggregation function names are derived from the `_get_aggregation_list` method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
     
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Use all numeric columns</span>
@@ -375,13 +375,13 @@
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">agg</span> <span class="ow">in</span> <span class="n">agg_funcs</span><span class="p">:</span>
                 <span class="n">agg_name</span> <span class="o">=</span> <span class="n">agg</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">agg</span><span class="o">.</span><span class="vm">__name__</span>
-                <span class="n">feature_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">agg_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">feature_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">agg_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 
         <span class="k">return</span> <span class="n">feature_names</span>
     
 <div class="viewcode-block" id="RollingAggregator.fit">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.RollingAggregator.fit">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;RollingAggregator&#39;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'RollingAggregator'</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -389,7 +389,7 @@
 <div class="viewcode-block" id="RollingAggregator.transform">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.RollingAggregator.transform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Transforms the input DataFrame by applying rolling, expanding, or exponentially weighted </span>
 <span class="sd">        moving (EWM) window aggregations to specified columns.</span>
 
@@ -421,7 +421,7 @@
 <span class="sd">            </span>
 <span class="sd">            - The resulting column names will include the original column name, the suffix </span>
 <span class="sd">              specified in `self.suffix`, and the aggregation function name.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
             <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -437,26 +437,26 @@
         <span class="c1"># Validate columns exist in DataFrame</span>
         <span class="n">missing_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">missing_cols</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns </span><span class="si">{</span><span class="n">missing_cols</span><span class="si">}</span><span class="s2"> not found in input DataFrame&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Columns </span><span class="si">{</span><span class="n">missing_cols</span><span class="si">}</span><span class="s2"> not found in input DataFrame"</span><span class="p">)</span>
             
         <span class="n">result_df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">agg_funcs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_aggregation_list</span><span class="p">()</span>
         
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
             <span class="c1"># Choose the window type</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">&#39;fixed&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">'fixed'</span><span class="p">:</span>
                 <span class="n">window</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span>
                     <span class="n">window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span>
                     <span class="n">min_periods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_periods</span><span class="p">,</span>
                     <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
                     <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
                 <span class="p">)</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">&#39;expanding&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">'expanding'</span><span class="p">:</span>
                 <span class="n">window</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">expanding</span><span class="p">(</span>
                     <span class="n">min_periods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_periods</span><span class="p">,</span>
                     <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
                 <span class="p">)</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">&#39;ewm&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_type</span> <span class="o">==</span> <span class="s1">'ewm'</span><span class="p">:</span>
                 <span class="n">window</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">ewm</span><span class="p">(</span>
                     <span class="n">span</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span>
                     <span class="n">min_periods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_periods</span><span class="p">,</span>
@@ -470,13 +470,13 @@
                         <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">agg</span><span class="p">)</span>
                         <span class="n">agg_result</span> <span class="o">=</span> <span class="n">method</span><span class="p">()</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">agg</span><span class="si">}</span><span class="s2"> not available for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_type</span><span class="si">}</span><span class="s2"> window&quot;</span><span class="p">)</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Method </span><span class="si">{</span><span class="n">agg</span><span class="si">}</span><span class="s2"> not available for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">window_type</span><span class="si">}</span><span class="s2"> window"</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># agg is a callable</span>
                     <span class="n">agg_result</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 
                 <span class="n">agg_name</span> <span class="o">=</span> <span class="n">agg</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">agg</span><span class="o">.</span><span class="vm">__name__</span>
-                <span class="n">result_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">agg_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">agg_result</span>
+                <span class="n">result_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">agg_name</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">agg_result</span>
                 
         <span class="k">return</span> <span class="n">result_df</span></div>
 
@@ -484,7 +484,7 @@
 <div class="viewcode-block" id="RollingAggregator.get_feature_names_out">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.RollingAggregator.get_feature_names_out">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_feature_names_out</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_features</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get output feature names for transformation.</span>
+<span class="w">        </span><span class="sd">"""Get output feature names for transformation.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 
@@ -496,14 +496,14 @@
 <span class="sd">            list of str:</span>
 
 <span class="sd">                Output feature names.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_feature_names_out&#39;</span><span class="p">):</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_feature_names_out'</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_features</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_feature_names_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feature_names</span><span class="p">(</span><span class="n">input_features</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Cannot determine feature names without fitting or &quot;</span>
-                    <span class="s2">&quot;providing a DataFrame as input_features.&quot;</span>
+                    <span class="s2">"Cannot determine feature names without fitting or "</span>
+                    <span class="s2">"providing a DataFrame as input_features."</span>
                 <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature_names_out</span></div>
 
@@ -511,7 +511,7 @@
 <div class="viewcode-block" id="RollingAggregator.fit_transform">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.RollingAggregator.fit_transform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit and transform in one step.</span>
+<span class="w">        </span><span class="sd">"""Fit and transform in one step.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 
@@ -525,7 +525,7 @@
 
 <span class="sd">            DataFrame: </span>
 <span class="sd">                Transformed data with rolling aggregations.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_feature_names_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feature_names</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 </div>
@@ -533,10 +533,10 @@
 
 
 <span class="c1"># Example usage</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="c1"># Create sample time series data</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">date_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+    <span class="n">date_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2023-01-01'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
     <span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
     
     <span class="c1"># Insert some anomalies</span>
@@ -545,15 +545,15 @@
     
     <span class="c1"># Create DataFrame</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">date_range</span><span class="p">,</span>
-        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">normal_data</span>
+        <span class="s1">'timestamp'</span><span class="p">:</span> <span class="n">date_range</span><span class="p">,</span>
+        <span class="s1">'value'</span><span class="p">:</span> <span class="n">normal_data</span>
     <span class="p">})</span>
     
     <span class="c1"># Initialize transformer</span>
     <span class="n">transformer</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span>
         <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">],</span>
-        <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;value&#39;</span>
+        <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">],</span>
+        <span class="n">columns</span><span class="o">=</span><span class="s1">'value'</span>
     <span class="p">)</span>
     
     <span class="c1"># Apply transformation</span>

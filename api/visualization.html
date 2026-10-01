@@ -267,15 +267,15 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.visualization.AnomalyVisualizer">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.visualization.</span></span><span class="sig-name descname"><span class="pre">AnomalyVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anomaly_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incidents_df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scores'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anomaly_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'anomaly'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/visualization/visualization.html#AnomalyVisualizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.visualization.AnomalyVisualizer" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Visualize anomaly detection results with static and interactive plots.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>anomaly_df</strong> (<em>pd.DataFrame</em>) – Time-indexed DataFrame with anomaly scores and labels.</p></li>
 <li><p><strong>incidents_df</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – DataFrame with <code class="docutils literal notranslate"><span class="pre">start_time</span></code>, <code class="docutils literal notranslate"><span class="pre">end_time</span></code>, and <code class="docutils literal notranslate"><span class="pre">Servicio</span></code> columns.</p></li>
-<li><p><strong>score_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default='scores'</em>) – Column name for anomaly scores.</p></li>
-<li><p><strong>anomaly_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default='anomaly'</em>) – Column name for anomaly labels (<code class="docutils literal notranslate"><span class="pre">-1</span></code> = anomaly).</p></li>
+<li><p><strong>score_col</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default='scores'</em>) – Column name for anomaly scores.</p></li>
+<li><p><strong>anomaly_col</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default='anomaly'</em>) – Column name for anomaly labels (<code class="docutils literal notranslate"><span class="pre">-1</span></code> = anomaly).</p></li>
 </ul>
 </dd>
 </dl>
@@ -286,14 +286,14 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – Whether to zoom into a specific date range.</p></li>
-<li><p><strong>zoom_date</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">[start_date,</span> <span class="pre">end_date]</span></code> for zooming.</p></li>
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a horizontal threshold line.</p></li>
-<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – Colors for <code class="docutils literal notranslate"><span class="pre">'normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'anomaly'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'incident'</span></code>.</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
-<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – X-axis label.</p></li>
-<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Y-axis label.</p></li>
-<li><p><strong>legend_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Custom legend labels.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – Whether to zoom into a specific date range.</p></li>
+<li><p><strong>zoom_date</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">[start_date,</span> <span class="pre">end_date]</span></code> for zooming.</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a horizontal threshold line.</p></li>
+<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – Colors for <code class="docutils literal notranslate"><span class="pre">'normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'anomaly'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'incident'</span></code>.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – X-axis label.</p></li>
+<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Y-axis label.</p></li>
+<li><p><strong>legend_labels</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Custom legend labels.</p></li>
 </ul>
 </dd>
 </dl>
@@ -306,11 +306,11 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a horizontal threshold line.</p></li>
-<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – Colors for <code class="docutils literal notranslate"><span class="pre">'normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'anomaly'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'incident'</span></code>.</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
-<li><p><strong>xaxis_title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – X-axis label.</p></li>
-<li><p><strong>yaxis_title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Y-axis label.</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a horizontal threshold line.</p></li>
+<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – Colors for <code class="docutils literal notranslate"><span class="pre">'normal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'anomaly'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'incident'</span></code>.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
+<li><p><strong>xaxis_title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – X-axis label.</p></li>
+<li><p><strong>yaxis_title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Y-axis label.</p></li>
 </ul>
 </dd>
 </dl>
@@ -326,9 +326,9 @@ means the detector can reliably distinguish anomalies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default=40</em>) – Number of histogram bins.</p></li>
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a vertical threshold line.</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
+<li><p><strong>bins</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default=40</em>) – Number of histogram bins.</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – If provided, draws a vertical threshold line.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Chart title.</p></li>
 </ul>
 </dd>
 </dl>
@@ -344,9 +344,9 @@ samples classified as anomalies. Useful for understanding
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>feature_columns</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Columns to plot. Defaults to all numeric columns except
+<li><p><strong>feature_columns</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Columns to plot. Defaults to all numeric columns except
 the score and anomaly columns.</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Overall chart title.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Overall chart title.</p></li>
 </ul>
 </dd>
 </dl>
@@ -360,13 +360,13 @@ the score and anomaly columns.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.visualization.SHAPVisualizer">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.visualization.</span></span><span class="sig-name descname"><span class="pre">SHAPVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/visualization/visualization.html#SHAPVisualizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.visualization.SHAPVisualizer" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>SHAP-based model interpretability visualizer.</p>
 <p>Explains predictions of tree-based detectors (e.g. <code class="docutils literal notranslate"><span class="pre">IsolationForestDetector</span></code>)
 using SHAP values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><em>object</em></a>) – A trained detector with a <code class="docutils literal notranslate"><span class="pre">.model</span></code> attribute that is a
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><em>object</em></a>) – A trained detector with a <code class="docutils literal notranslate"><span class="pre">.model</span></code> attribute that is a
 scikit-learn tree-based estimator.</p>
 </dd>
 </dl>
@@ -380,7 +380,7 @@ value toward the final output for the given sample.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pd.DataFrame</em>) – Input samples (same data used for prediction).</p></li>
-<li><p><strong>anomaly_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Row index in <em>X</em> to explain.</p></li>
+<li><p><strong>anomaly_index</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Row index in <em>X</em> to explain.</p></li>
 </ul>
 </dd>
 </dl>
@@ -411,7 +411,7 @@ More readable than the force plot when there are many features.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pd.DataFrame</em>) – Input samples.</p></li>
-<li><p><strong>sample_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Row index in <em>X</em> to explain.</p></li>
+<li><p><strong>sample_index</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Row index in <em>X</em> to explain.</p></li>
 </ul>
 </dd>
 </dl>
@@ -442,8 +442,8 @@ colored by an interaction feature. Reveals non-linear relationships
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pd.DataFrame</em>) – Input samples.</p></li>
-<li><p><strong>feature</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Feature name to plot on the X axis.</p></li>
-<li><p><strong>interaction_feature</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Feature to use for coloring. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, SHAP picks the
+<li><p><strong>feature</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Feature name to plot on the X axis.</p></li>
+<li><p><strong>interaction_feature</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Feature to use for coloring. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, SHAP picks the
 strongest interaction automatically.</p></li>
 </ul>
 </dd>

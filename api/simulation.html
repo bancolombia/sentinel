@@ -265,11 +265,11 @@ detection scenarios with configurable data sources and detectors.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.simulation.StreamingSimulation">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.simulation.</span></span><span class="sig-name descname"><span class="pre">StreamingSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/simulation/streaming_anomaly_detection.html#StreamingSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.simulation.StreamingSimulation" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.1)"><em>DataFrame</em></a>)</p>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.6)"><em>DataFrame</em></a>)</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -278,7 +278,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>The size of the sliding window for anomaly detection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -289,7 +289,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>The static threshold for anomaly detection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -300,7 +300,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>Whether to use a dynamic threshold based on historical scores.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -311,7 +311,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>The percentile used for calculating the dynamic threshold.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -355,7 +355,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>Stores historical anomaly scores.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -377,7 +377,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>The size of each data chunk for streaming.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -388,7 +388,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>The interval (in seconds) between streaming chunks.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -421,7 +421,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>Indicates whether the streaming simulation is active.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -443,7 +443,7 @@ detection scenarios with configurable data sources and detectors.</p>
 <dd><p>Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>chunk</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The input DataFrame containing the data to preprocess.</p>
+<dd class="field-odd"><p><strong>chunk</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The input DataFrame containing the data to preprocess.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A NumPy array containing the preprocessed numeric data.</p>
@@ -485,7 +485,7 @@ then prepared for visualization and sent to a plotting queue.</p>
 <dd><p>Flag to control the streaming process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -529,7 +529,7 @@ then prepared for visualization and sent to a plotting queue.</p>
 <dd><p>Size of the rolling window for preprocessing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -540,7 +540,7 @@ then prepared for visualization and sent to a plotting queue.</p>
 <dd><p>Anomaly detector instance with <cite>fit</cite> and <cite>detect</cite> methods.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)">object</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -575,7 +575,7 @@ by setting <cite>self.streaming_active</cite> to False and joining both threads.
 Additionally, this method handles plotting from the main thread.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt" title="(in Python v3.14)"><strong>KeyboardInterrupt</strong></a> – If the simulation is manually stopped by the user.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#KeyboardInterrupt" title="(in Python v3.14)"><strong>KeyboardInterrupt</strong></a> – If the simulation is manually stopped by the user.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -589,7 +589,7 @@ inline.  Each iteration clears the previous frame and redraws,
 producing a live-updating plot in the notebook output cell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>max_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Maximum number of chunks to process.  <code class="docutils literal notranslate"><span class="pre">None</span></code> means
+<dd class="field-odd"><p><strong>max_steps</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Maximum number of chunks to process.  <code class="docutils literal notranslate"><span class="pre">None</span></code> means
 process all data.</p>
 </dd>
 </dl>
@@ -603,7 +603,7 @@ process all data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.simulation.streaming_anomaly_detection.StreamingDataManager">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.simulation.streaming_anomaly_detection.</span></span><span class="sig-name descname"><span class="pre">StreamingDataManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/simulation/streaming_anomaly_detection.html#StreamingDataManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.simulation.streaming_anomaly_detection.StreamingDataManager" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A class to manage streaming of data in chunks from a pandas DataFrame.
 .. attribute:: - data</p>
 <blockquote>
@@ -616,7 +616,7 @@ process all data.</p>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.1)"><em>DataFrame</em></a>)</p>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.6)"><em>DataFrame</em></a>)</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -625,7 +625,7 @@ process all data.</p>
 <dd><p>The number of rows in each chunk. Default is 100.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -636,7 +636,7 @@ process all data.</p>
 <dd><p>The time interval (in seconds) between streaming chunks. Default is 1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -658,7 +658,7 @@ process all data.</p>
 <dd><p>The current index in the DataFrame for streaming.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -669,7 +669,7 @@ process all data.</p>
 <dd><p>A flag indicating whether streaming is active.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>

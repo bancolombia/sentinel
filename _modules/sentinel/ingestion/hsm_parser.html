@@ -256,29 +256,29 @@
 <div class="viewcode-block" id="HSMParser">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.HSMParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HSMParser</span><span class="p">(</span><span class="n">BaseLogParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for Hardware Security Module (HSM) log files.</span>
+<span class="w">    </span><span class="sd">"""Parser for Hardware Security Module (HSM) log files.</span>
 
 <span class="sd">    Expected log format::</span>
 
 <span class="sd">        &lt;date&gt; &lt;time&gt; [&lt;level&gt;] [&lt;ip&gt;] - [&lt;category&gt;] &lt;message&gt;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="HSMParser.parse">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.HSMParser.parse">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the HSM log file into a structured DataFrame.</span>
+<span class="w">        </span><span class="sd">"""Parse the HSM log file into a structured DataFrame.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        pd.DataFrame</span>
 <span class="sd">            Columns: ``date``, ``time``, ``level``, ``ip``,</span>
 <span class="sd">            ``category``, ``message``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-            <span class="sa">r</span><span class="s1">&#39;(?P&lt;date&gt;\d</span><span class="si">{4}</span><span class="s1">\s\w</span><span class="si">{3}</span><span class="s1">\s+\d{1,2})\s(?P&lt;time&gt;\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">)\s+\[(?P&lt;level&gt;[^\]]+)\]\s+\[(?P&lt;ip&gt;[\d.]+)\]\s+-\s+\[(?P&lt;category&gt;[^\]]+)\]\s+(?P&lt;message&gt;.+)&#39;</span>
+            <span class="sa">r</span><span class="s1">'(?P&lt;date&gt;\d</span><span class="si">{4}</span><span class="s1">\s\w</span><span class="si">{3}</span><span class="s1">\s+\d{1,2})\s(?P&lt;time&gt;\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">)\s+\[(?P&lt;level&gt;[^\]]+)\]\s+\[(?P&lt;ip&gt;[\d.]+)\]\s+-\s+\[(?P&lt;category&gt;[^\]]+)\]\s+(?P&lt;message&gt;.+)'</span>
         <span class="p">)</span>
         <span class="n">entries</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
                 <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>

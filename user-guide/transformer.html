@@ -289,19 +289,19 @@ transformer API (<code class="docutils literal notranslate"><span class="pre">fi
 
 <span class="c1"># Sample data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">&quot;cpu&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
-    <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
-<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2025-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;15min&quot;</span><span class="p">))</span>
+    <span class="s2">"cpu"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="s2">"memory"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2025-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"15min"</span><span class="p">))</span>
 
 <span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span>
     <span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">],</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">],</span>
+    <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="s2">"memory"</span><span class="p">],</span>
 <span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">agg</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-<span class="c1"># [&#39;cpu&#39;, &#39;memory&#39;, &#39;cpu_rolling_mean&#39;, &#39;cpu_rolling_std&#39;,</span>
-<span class="c1">#  &#39;memory_rolling_mean&#39;, &#39;memory_rolling_std&#39;]</span>
+<span class="c1"># ['cpu', 'memory', 'cpu_rolling_mean', 'cpu_rolling_std',</span>
+<span class="c1">#  'memory_rolling_mean', 'memory_rolling_std']</span>
 </pre></div>
 </div>
 </section>
@@ -361,12 +361,12 @@ can either drop these rows or use <code class="docutils literal notranslate"><sp
 </table>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Expanding: cumulative mean from the start</span>
-<span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s2">&quot;expanding&quot;</span><span class="p">,</span>
-                        <span class="n">aggregation_functions</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s2">"expanding"</span><span class="p">,</span>
+                        <span class="n">aggregation_functions</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span>
 
 <span class="c1"># EWM: exponentially weighted mean with span=12</span>
-<span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s2">&quot;ewm&quot;</span><span class="p">,</span>
-                        <span class="n">aggregation_functions</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s2">"ewm"</span><span class="p">,</span>
+                        <span class="n">aggregation_functions</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -410,8 +410,8 @@ hourly features, use <code class="docutils literal notranslate"><span class="pre
 
 <span class="n">agg</span> <span class="o">=</span> <span class="n">RollingAggregator</span><span class="p">(</span>
     <span class="n">window_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">iqr</span><span class="p">],</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cpu&quot;</span><span class="p">],</span>
+    <span class="n">aggregation_functions</span><span class="o">=</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">iqr</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"cpu"</span><span class="p">],</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -438,11 +438,11 @@ to count events, track unique values, or measure event frequency.</p>
 <h3>Basic usage<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sentinel.transformer</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringAggregator</span>
 
-<span class="n">str_agg</span> <span class="o">=</span> <span class="n">StringAggregator</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
+<span class="n">str_agg</span> <span class="o">=</span> <span class="n">StringAggregator</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">timestamp_column</span><span class="o">=</span><span class="s2">"timestamp"</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">str_agg</span><span class="o">.</span><span class="n">create_time_aggregation</span><span class="p">(</span>
-    <span class="n">time_window</span><span class="o">=</span><span class="s2">&quot;1h&quot;</span><span class="p">,</span>
-    <span class="n">column_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;nunique&quot;</span><span class="p">]},</span>
-    <span class="n">category_count_columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;OK&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;TIMEOUT&quot;</span><span class="p">]},</span>
+    <span class="n">time_window</span><span class="o">=</span><span class="s2">"1h"</span><span class="p">,</span>
+    <span class="n">column_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"count"</span><span class="p">,</span> <span class="s2">"nunique"</span><span class="p">]},</span>
+    <span class="n">category_count_columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OK"</span><span class="p">,</span> <span class="s2">"ERROR"</span><span class="p">,</span> <span class="s2">"TIMEOUT"</span><span class="p">]},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -532,13 +532,13 @@ succession. Often seen during cascading failures.</p></li>
 <h3>Custom global metrics<a class="headerlink" href="#custom-global-metrics" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">error_ratio</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-    <span class="n">errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"ERROR"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">errors</span> <span class="o">/</span> <span class="n">total</span> <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">str_agg</span><span class="o">.</span><span class="n">create_time_aggregation</span><span class="p">(</span>
-    <span class="n">time_window</span><span class="o">=</span><span class="s2">&quot;1h&quot;</span><span class="p">,</span>
-    <span class="n">column_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]},</span>
-    <span class="n">custom_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;error_ratio&quot;</span><span class="p">:</span> <span class="n">error_ratio</span><span class="p">},</span>
+    <span class="n">time_window</span><span class="o">=</span><span class="s2">"1h"</span><span class="p">,</span>
+    <span class="n">column_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"count"</span><span class="p">]},</span>
+    <span class="n">custom_metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">"error_ratio"</span><span class="p">:</span> <span class="n">error_ratio</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>

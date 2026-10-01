@@ -249,11 +249,11 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.visualization.visualization</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Visualization module for anomaly detection results and SHAP analysis.</span>
+<span></span><span class="sd">"""Visualization module for anomaly detection results and SHAP analysis.</span>
 
 <span class="sd">Provides ``AnomalyVisualizer`` for plotting anomaly scores over time</span>
 <span class="sd">and ``SHAPVisualizer`` for model interpretability via SHAP values.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -265,7 +265,7 @@
 <div class="viewcode-block" id="AnomalyVisualizer">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.AnomalyVisualizer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AnomalyVisualizer</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualize anomaly detection results with static and interactive plots.</span>
+<span class="w">    </span><span class="sd">"""Visualize anomaly detection results with static and interactive plots.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -273,13 +273,13 @@
 <span class="sd">        Time-indexed DataFrame with anomaly scores and labels.</span>
 <span class="sd">    incidents_df : pd.DataFrame, optional</span>
 <span class="sd">        DataFrame with ``start_time``, ``end_time``, and ``Servicio`` columns.</span>
-<span class="sd">    score_col : str, default=&#39;scores&#39;</span>
+<span class="sd">    score_col : str, default='scores'</span>
 <span class="sd">        Column name for anomaly scores.</span>
-<span class="sd">    anomaly_col : str, default=&#39;anomaly&#39;</span>
+<span class="sd">    anomaly_col : str, default='anomaly'</span>
 <span class="sd">        Column name for anomaly labels (``-1`` = anomaly).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anomaly_df</span><span class="p">,</span> <span class="n">incidents_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;scores&#39;</span><span class="p">,</span> <span class="n">anomaly_col</span><span class="o">=</span><span class="s1">&#39;anomaly&#39;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anomaly_df</span><span class="p">,</span> <span class="n">incidents_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">'scores'</span><span class="p">,</span> <span class="n">anomaly_col</span><span class="o">=</span><span class="s1">'anomaly'</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span> <span class="o">=</span> <span class="n">anomaly_df</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">incidents_df</span> <span class="o">=</span> <span class="n">incidents_df</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">score_col</span> <span class="o">=</span> <span class="n">score_col</span>
@@ -289,7 +289,7 @@
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.AnomalyVisualizer.plot_static">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zoom_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">legend_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a static scatter chart using matplotlib.</span>
+<span class="w">        </span><span class="sd">"""Plot a static scatter chart using matplotlib.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -300,7 +300,7 @@
 <span class="sd">        threshold : float, optional</span>
 <span class="sd">            If provided, draws a horizontal threshold line.</span>
 <span class="sd">        colors : dict, optional</span>
-<span class="sd">            Colors for ``&#39;normal&#39;``, ``&#39;anomaly&#39;``, and ``&#39;incident&#39;``.</span>
+<span class="sd">            Colors for ``'normal'``, ``'anomaly'``, and ``'incident'``.</span>
 <span class="sd">        title : str, optional</span>
 <span class="sd">            Chart title.</span>
 <span class="sd">        xlabel : str, optional</span>
@@ -309,32 +309,32 @@
 <span class="sd">            Y-axis label.</span>
 <span class="sd">        legend_labels : list of str, optional</span>
 <span class="sd">            Custom legend labels.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;anomaly&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;incident&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">}</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'normal'</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span> <span class="s1">'anomaly'</span><span class="p">:</span> <span class="s1">'red'</span><span class="p">,</span> <span class="s1">'incident'</span><span class="p">:</span> <span class="s1">'blue'</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">legend_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">legend_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="s1">&#39;Anomaly&#39;</span><span class="p">,</span> <span class="s1">&#39;Incident&#39;</span><span class="p">]</span>
+            <span class="n">legend_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Normal'</span><span class="p">,</span> <span class="s1">'Anomaly'</span><span class="p">,</span> <span class="s1">'Incident'</span><span class="p">]</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span> <span class="s1">'gray'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span>
-            <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]],</span>
+            <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="s1">'anomaly'</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="s1">'normal'</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]],</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">incidents_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incidents_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;start_time&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;end_time&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;incident&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'start_time'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'end_time'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">'incident'</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span> <span class="ow">or</span> <span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span> <span class="ow">or</span> <span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;Detected Anomalies vs Incidents&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span> <span class="ow">or</span> <span class="s1">'Time'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span> <span class="ow">or</span> <span class="s1">'Anomaly Score'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">'Detected Anomalies vs Incidents'</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend_labels</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend_labels</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">zoom</span> <span class="ow">and</span> <span class="n">zoom_date</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">zoom_date</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">zoom_date</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -346,55 +346,55 @@
 <div class="viewcode-block" id="AnomalyVisualizer.plot_dynamic">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.AnomalyVisualizer.plot_dynamic">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_dynamic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xaxis_title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot an interactive chart using Plotly.</span>
+<span class="w">        </span><span class="sd">"""Plot an interactive chart using Plotly.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        threshold : float, optional</span>
 <span class="sd">            If provided, draws a horizontal threshold line.</span>
 <span class="sd">        colors : dict, optional</span>
-<span class="sd">            Colors for ``&#39;normal&#39;``, ``&#39;anomaly&#39;``, and ``&#39;incident&#39;``.</span>
+<span class="sd">            Colors for ``'normal'``, ``'anomaly'``, and ``'incident'``.</span>
 <span class="sd">        title : str, optional</span>
 <span class="sd">            Chart title.</span>
 <span class="sd">        xaxis_title : str, optional</span>
 <span class="sd">            X-axis label.</span>
 <span class="sd">        yaxis_title : str, optional</span>
 <span class="sd">            Y-axis label.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;anomaly&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;incident&#39;</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">}</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'normal'</span><span class="p">:</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'anomaly'</span><span class="p">:</span> <span class="s1">'red'</span><span class="p">,</span> <span class="s1">'incident'</span><span class="p">:</span> <span class="s1">'orange'</span><span class="p">}</span>
 
         <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
         <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Anomaly Scores&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">]),</span>
+            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers'</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">'Anomaly Scores'</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">'normal'</span><span class="p">]),</span>
             <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
         <span class="p">))</span>
 
         <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">],</span>
-            <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Anomalies&#39;</span><span class="p">,</span>
-            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">'markers'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Anomalies'</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">'anomaly'</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
         <span class="p">))</span>
 
         <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dash&#39;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
-                          <span class="n">annotation_text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s1">'dash'</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span>
+                          <span class="n">annotation_text</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">incidents_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incidents_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
                 <span class="n">fig</span><span class="o">.</span><span class="n">add_vrect</span><span class="p">(</span>
-                    <span class="n">x0</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;start_time&#39;</span><span class="p">],</span> <span class="n">x1</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;end_time&#39;</span><span class="p">],</span>
-                    <span class="n">fillcolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;incident&#39;</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                    <span class="n">annotation_text</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Servicio&#39;</span><span class="p">],</span>
+                    <span class="n">x0</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">'start_time'</span><span class="p">],</span> <span class="n">x1</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">'end_time'</span><span class="p">],</span>
+                    <span class="n">fillcolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s1">'incident'</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                    <span class="n">annotation_text</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">'Servicio'</span><span class="p">],</span>
                 <span class="p">)</span>
 
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;Anomaly Scores&#39;</span><span class="p">,</span>
-            <span class="n">xaxis_title</span><span class="o">=</span><span class="n">xaxis_title</span> <span class="ow">or</span> <span class="s1">&#39;Time&#39;</span><span class="p">,</span>
-            <span class="n">yaxis_title</span><span class="o">=</span><span class="n">yaxis_title</span> <span class="ow">or</span> <span class="s1">&#39;Anomaly Score&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">'Anomaly Scores'</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="n">xaxis_title</span> <span class="ow">or</span> <span class="s1">'Time'</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="n">yaxis_title</span> <span class="ow">or</span> <span class="s1">'Anomaly Score'</span><span class="p">,</span>
             <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
         <span class="p">)</span>
 
@@ -404,7 +404,7 @@
 <div class="viewcode-block" id="AnomalyVisualizer.plot_score_distribution">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.AnomalyVisualizer.plot_score_distribution">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_score_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a histogram of anomaly scores split by normal/anomaly class.</span>
+<span class="w">        </span><span class="sd">"""Plot a histogram of anomaly scores split by normal/anomaly class.</span>
 
 <span class="sd">        This visualization helps assess the **separation** between normal</span>
 <span class="sd">        and anomalous score distributions. Good separation (little overlap)</span>
@@ -418,7 +418,7 @@
 <span class="sd">            If provided, draws a vertical threshold line.</span>
 <span class="sd">        title : str, optional</span>
 <span class="sd">            Chart title.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">]</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]</span>
 
@@ -426,17 +426,17 @@
         <span class="n">anomaly_scores</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">normal_scores</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">normal_scores</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Normal'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">anomaly_scores</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">anomaly_scores</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">bins</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">anomaly_scores</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">bins</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Anomaly'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-                        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Threshold (</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;Score Distribution — Normal vs Anomaly&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Anomaly Score'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Count'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">'Score Distribution — Normal vs Anomaly'</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
@@ -445,7 +445,7 @@
 <div class="viewcode-block" id="AnomalyVisualizer.plot_features">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.AnomalyVisualizer.plot_features">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot original features with anomaly markers overlaid.</span>
+<span class="w">        </span><span class="sd">"""Plot original features with anomaly markers overlaid.</span>
 
 <span class="sd">        Shows the raw feature values over time with red markers on</span>
 <span class="sd">        samples classified as anomalies. Useful for understanding</span>
@@ -458,7 +458,7 @@
 <span class="sd">            the score and anomaly columns.</span>
 <span class="sd">        title : str, optional</span>
 <span class="sd">            Overall chart title.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_df</span>
         <span class="n">exclude</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">}</span>
 
@@ -466,7 +466,7 @@
             <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">feature_columns</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No numeric feature columns found to plot.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"No numeric feature columns found to plot."</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">)</span>
@@ -477,16 +477,16 @@
         <span class="n">anomaly_mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">anomaly_col</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
 
         <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">feature_columns</span><span class="p">):</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">anomaly_mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">anomaly_mask</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">anomaly_mask</span><span class="p">],</span>
-                           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">)</span>
+                           <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Anomaly'</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
-        <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;Feature Values with Anomaly Markers&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">'Feature Values with Anomaly Markers'</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 </div>
@@ -496,7 +496,7 @@
 <div class="viewcode-block" id="SHAPVisualizer">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SHAPVisualizer</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;SHAP-based model interpretability visualizer.</span>
+<span class="w">    </span><span class="sd">"""SHAP-based model interpretability visualizer.</span>
 
 <span class="sd">    Explains predictions of tree-based detectors (e.g. ``IsolationForestDetector``)</span>
 <span class="sd">    using SHAP values.</span>
@@ -506,7 +506,7 @@
 <span class="sd">    model : object</span>
 <span class="sd">        A trained detector with a ``.model`` attribute that is a</span>
 <span class="sd">        scikit-learn tree-based estimator.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
@@ -516,12 +516,12 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_base_value_scalar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return expected_value as a Python float (handles array case).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Return expected_value as a Python float (handles array case)."""</span>
         <span class="n">ev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ev</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ev</span><span class="p">,</span> <span class="s1">'__len__'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_shap_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute and cache SHAP values.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Compute and cache SHAP values."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shap_X_cache</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">X</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shap_values_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shap_X_cache</span> <span class="o">=</span> <span class="n">X</span>
@@ -530,7 +530,7 @@
 <div class="viewcode-block" id="SHAPVisualizer.plot_force">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer.plot_force">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">anomaly_index</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a SHAP force plot for a single sample.</span>
+<span class="w">        </span><span class="sd">"""Plot a SHAP force plot for a single sample.</span>
 
 <span class="sd">        Shows how each feature pushed the prediction from the base</span>
 <span class="sd">        value toward the final output for the given sample.</span>
@@ -541,7 +541,7 @@
 <span class="sd">            Input samples (same data used for prediction).</span>
 <span class="sd">        anomaly_index : int</span>
 <span class="sd">            Row index in *X* to explain.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">shap_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span>
@@ -556,7 +556,7 @@
 <div class="viewcode-block" id="SHAPVisualizer.plot_summary">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer.plot_summary">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a SHAP summary (beeswarm) plot.</span>
+<span class="w">        </span><span class="sd">"""Plot a SHAP summary (beeswarm) plot.</span>
 
 <span class="sd">        Each dot is one sample. The X axis shows the SHAP value</span>
 <span class="sd">        (impact on prediction), color indicates the feature value</span>
@@ -566,7 +566,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        X : pd.DataFrame</span>
 <span class="sd">            Input samples.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">shap_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></div>
 
@@ -574,9 +574,9 @@
 <div class="viewcode-block" id="SHAPVisualizer.plot_waterfall">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer.plot_waterfall">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_waterfall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">sample_index</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a SHAP waterfall chart for a single sample.</span>
+<span class="w">        </span><span class="sd">"""Plot a SHAP waterfall chart for a single sample.</span>
 
-<span class="sd">        A vertical bar chart showing each feature&#39;s contribution</span>
+<span class="sd">        A vertical bar chart showing each feature's contribution</span>
 <span class="sd">        stacked from the base value to the final prediction.</span>
 <span class="sd">        More readable than the force plot when there are many features.</span>
 
@@ -586,7 +586,7 @@
 <span class="sd">            Input samples.</span>
 <span class="sd">        sample_index : int</span>
 <span class="sd">            Row index in *X* to explain.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">shap_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">explanation</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explanation</span><span class="p">(</span>
             <span class="n">values</span><span class="o">=</span><span class="n">shap_values</span><span class="p">[</span><span class="n">sample_index</span><span class="p">],</span>
@@ -594,13 +594,19 @@
             <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
             <span class="n">feature_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
         <span class="p">)</span>
-        <span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">waterfall</span><span class="p">(</span><span class="n">explanation</span><span class="p">)</span></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">waterfall</span><span class="p">(</span><span class="n">explanation</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="c1"># Some SHAP versions fail when the waterfall plot receives a scalar</span>
+            <span class="c1"># base value for a single sample. Fallback to the bar chart so the</span>
+            <span class="c1"># notebook remains usable without changing the API.</span>
+            <span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">explanation</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SHAPVisualizer.plot_bar">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer.plot_bar">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a SHAP bar chart of global feature importance.</span>
+<span class="w">        </span><span class="sd">"""Plot a SHAP bar chart of global feature importance.</span>
 
 <span class="sd">        Shows the mean absolute SHAP value per feature as horizontal</span>
 <span class="sd">        bars. Cleaner than the summary plot when you only need the</span>
@@ -610,7 +616,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        X : pd.DataFrame</span>
 <span class="sd">            Input samples.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">shap_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">explanation</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explanation</span><span class="p">(</span>
             <span class="n">values</span><span class="o">=</span><span class="n">shap_values</span><span class="p">,</span>
@@ -624,11 +630,11 @@
 <div class="viewcode-block" id="SHAPVisualizer.plot_dependence">
 <a class="viewcode-back" href="../../../api/visualization.html#sentinel.visualization.SHAPVisualizer.plot_dependence">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_dependence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">interaction_feature</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a SHAP dependence plot for a single feature.</span>
+<span class="w">        </span><span class="sd">"""Plot a SHAP dependence plot for a single feature.</span>
 
-<span class="sd">        Scatter plot of a feature&#39;s value vs its SHAP value, optionally</span>
+<span class="sd">        Scatter plot of a feature's value vs its SHAP value, optionally</span>
 <span class="sd">        colored by an interaction feature. Reveals non-linear relationships</span>
-<span class="sd">        (e.g. &quot;CPU only matters when it exceeds 80%&quot;) and feature interactions.</span>
+<span class="sd">        (e.g. "CPU only matters when it exceeds 80%") and feature interactions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -639,7 +645,7 @@
 <span class="sd">        interaction_feature : str or None, optional</span>
 <span class="sd">            Feature to use for coloring. If ``None``, SHAP picks the</span>
 <span class="sd">            strongest interaction automatically.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">shap_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">shap</span><span class="o">.</span><span class="n">dependence_plot</span><span class="p">(</span>
             <span class="n">feature</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span>

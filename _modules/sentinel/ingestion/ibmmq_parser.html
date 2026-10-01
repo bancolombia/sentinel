@@ -256,15 +256,15 @@
 <div class="viewcode-block" id="IBMMQParser">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.IBMMQParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IBMMQParser</span><span class="p">(</span><span class="n">BaseLogParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for IBM MQ log files.</span>
+<span class="w">    </span><span class="sd">"""Parser for IBM MQ log files.</span>
 
 <span class="sd">    Extracts structured fields from AMQ-style log entries.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="IBMMQParser.parse">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.IBMMQParser.parse">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the IBM MQ log file into a structured DataFrame.</span>
+<span class="w">        </span><span class="sd">"""Parse the IBM MQ log file into a structured DataFrame.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -276,37 +276,37 @@
 <span class="sd">            ``CodigoAMQ_Error``, ``DescripcionCodigoAMQ_Error``,</span>
 <span class="sd">            ``Explanation``, ``Action``.</span>
 <span class="sd">            Returns an empty DataFrame if the file cannot be read.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
                 <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-        <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?=----- amq)&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">]</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(?=----- amq)'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span> <span class="k">if</span> <span class="s1">'-'</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">]</span>
 
         <span class="n">patterns</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;Process&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Process\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Program&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Program\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Host&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Host\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Installation&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Installation\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;VRMF&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;VRMF\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;QMgr&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;QMgr\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Time\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;RemoteHost&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;RemoteHost\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;ArithInsert&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;ArithInsert1\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;CommentInsert1&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;CommentInsert1\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;CommentInsert2&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;CommentInsert2\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;CommentInsert3&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;CommentInsert3\((.*?)\)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;CodigoAMQ_Error&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(AMQ[0-9]+[A-Z]?)&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;DescripcionCodigoAMQ_Error&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;AMQ[0-9]+[A-Z]?:(.*?)\.&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Explanation&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;EXPLANATION:(.*?)ACTION:&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;Action&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;ACTION:(.*)&#39;</span>
+            <span class="s2">"Process"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'Process\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"Program"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'Program\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"Host"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'Host\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"Installation"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'Installation\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"VRMF"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'VRMF\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"QMgr"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'QMgr\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"Time"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'Time\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"RemoteHost"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'RemoteHost\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"ArithInsert"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'ArithInsert1\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"CommentInsert1"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'CommentInsert1\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"CommentInsert2"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'CommentInsert2\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"CommentInsert3"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'CommentInsert3\((.*?)\)'</span><span class="p">,</span>
+            <span class="s2">"CodigoAMQ_Error"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'(AMQ[0-9]+[A-Z]?)'</span><span class="p">,</span>
+            <span class="s2">"DescripcionCodigoAMQ_Error"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'AMQ[0-9]+[A-Z]?:(.*?)\.'</span><span class="p">,</span>
+            <span class="s2">"Explanation"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'EXPLANATION:(.*?)ACTION:'</span><span class="p">,</span>
+            <span class="s2">"Action"</span><span class="p">:</span> <span class="sa">r</span><span class="s1">'ACTION:(.*)'</span>
         <span class="p">}</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">extract_info</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">{</span>
-                <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span> <span class="k">else</span> <span class="s2">""</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">pat</span> <span class="ow">in</span> <span class="n">patterns</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">}</span>
 

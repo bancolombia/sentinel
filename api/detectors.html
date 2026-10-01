@@ -271,18 +271,24 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.detectors.IsolationForestDetector">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.detectors.</span></span><span class="sig-name descname"><span class="pre">IsolationForestDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contamination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/isolation_forest.html#IsolationForestDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.IsolationForestDetector" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
 <p>Anomaly detector based on the Isolation Forest algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_estimators</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default=100</em>) – Number of base estimators in the ensemble.</p></li>
-<li><p><strong>max_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>'auto'</em><em>, </em><em>default='auto'</em>) – Samples to draw for each base estimator.</p></li>
-<li><p><strong>contamination</strong> (<em>'auto'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default='auto'</em>) – Expected proportion of outliers in the dataset.</p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>RandomState</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – Controls randomness for reproducibility.</p></li>
+<li><p><strong>n_estimators</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default=100</em>) – Number of base estimators in the ensemble.</p></li>
+<li><p><strong>max_samples</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>'auto'</em><em>, </em><em>default='auto'</em>) – Samples to draw for each base estimator.</p></li>
+<li><p><strong>contamination</strong> (<em>'auto'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default='auto'</em>) – Expected proportion of outliers in the dataset.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>RandomState</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – Controls randomness for reproducibility.</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sentinel.detectors.IsolationForestDetector.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/isolation_forest.html#IsolationForestDetector.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.IsolationForestDetector.set_params" title="Link to this definition">¶</a></dt>
+<dd><p>Synchronize estimator parameters with the underlying sklearn model.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="sentinel.detectors.IsolationForestDetector.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/isolation_forest.html#IsolationForestDetector.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.IsolationForestDetector.fit" title="Link to this definition">¶</a></dt>
@@ -339,7 +345,7 @@ number of features as the data used for training the model.</p>
 indicate more anomalous samples.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)">numpy.ndarray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -389,6 +395,12 @@ The anomalies found in the dataset.</p>
 <dt class="sig sig-object py" id="sentinel.detectors.IsolationForestDetector.predict_proba">
 <span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/isolation_forest.html#IsolationForestDetector.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.IsolationForestDetector.predict_proba" title="Link to this definition">¶</a></dt>
 <dd><p>Predict the probability of each sample being an anomaly.</p>
+<p>The raw Isolation Forest decision score is already a calibrated measure
+of how anomalous a sample is. A batch-wise min-max normalization makes the
+result depend on the composition of the current prediction batch, which is
+undesirable for a fitted detector. We convert the score to a stable
+anomaly probability using a logistic transform that is independent of the
+surrounding batch.</p>
 <p>Args</p>
 <blockquote>
 <div><dl class="simple">
@@ -413,7 +425,7 @@ The anomalies found in the dataset.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.detectors.RRCFDetector">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.detectors.</span></span><span class="sig-name descname"><span class="pre">RRCFDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shingle_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/rrcf_detector.html#RRCFDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.RRCFDetector" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
 <p>RRCFDetector: Robust Random Cut Forest anomaly detector.</p>
 <p>This class implements anomaly detection using the Robust Random Cut Forest
 algorithm for streaming anomaly detection.</p>
@@ -576,7 +588,7 @@ Series containing anomaly scores for the input data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.detectors.AutoencoderDetector">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.detectors.</span></span><span class="sig-name descname"><span class="pre">AutoencoderDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/autoencoder.html#AutoencoderDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.AutoencoderDetector" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Autoencoder-based anomaly detector.</p>
 <p>This class implements an anomaly detector using an autoencoder
 for detecting anomalies in time series data.</p>
@@ -608,7 +620,7 @@ for detecting anomalies in time series data.</p>
 <dd class="field-even"><p>Best model weights</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -653,7 +665,7 @@ for detecting anomalies in time series data.</p>
 <dd><p>Save the model to disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to save the model</p>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to save the model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -664,7 +676,7 @@ for detecting anomalies in time series data.</p>
 <dd><p>Load the model from disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to load the model</p>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to load the model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -677,7 +689,7 @@ for detecting anomalies in time series data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sentinel.detectors.LNNDetector">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sentinel.detectors.</span></span><span class="sig-name descname"><span class="pre">LNNDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sentinel/detectors/lnn.html#LNNDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sentinel.detectors.LNNDetector" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>LNN-based autoencoder anomaly detector.</p>
 <p>This class implements an anomaly detector using a Liquid Neural Network-based
 autoencoder for detecting anomalies in time series data, offering improved
@@ -703,14 +715,14 @@ capability for handling complex temporal dynamics.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>-</em>) – Input data for training the model</p></li>
 <li><p><strong>X_test</strong> (<em>-</em>) – Test data for validation</p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to print training progress</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to print training progress</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Training history</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -755,7 +767,7 @@ capability for handling complex temporal dynamics.</p>
 <dd><p>Save the model to disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to save the model</p>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to save the model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -766,7 +778,7 @@ capability for handling complex temporal dynamics.</p>
 <dd><p>Load the model from disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to load the model</p>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – File path to load the model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1096,6 +1108,7 @@ temporal dynamics in time series data.</p>
 <li><a class="reference internal" href="#">Detectors API</a><ul>
 <li><a class="reference internal" href="#isolationforestdetector">IsolationForestDetector</a><ul>
 <li><a class="reference internal" href="#sentinel.detectors.IsolationForestDetector"><code class="docutils literal notranslate"><span class="pre">IsolationForestDetector</span></code></a><ul>
+<li><a class="reference internal" href="#sentinel.detectors.IsolationForestDetector.set_params"><code class="docutils literal notranslate"><span class="pre">IsolationForestDetector.set_params()</span></code></a></li>
 <li><a class="reference internal" href="#sentinel.detectors.IsolationForestDetector.fit"><code class="docutils literal notranslate"><span class="pre">IsolationForestDetector.fit()</span></code></a></li>
 <li><a class="reference internal" href="#sentinel.detectors.IsolationForestDetector.predict"><code class="docutils literal notranslate"><span class="pre">IsolationForestDetector.predict()</span></code></a></li>
 <li><a class="reference internal" href="#sentinel.detectors.IsolationForestDetector.decision_function"><code class="docutils literal notranslate"><span class="pre">IsolationForestDetector.decision_function()</span></code></a></li>

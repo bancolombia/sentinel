@@ -256,35 +256,49 @@
 <div class="viewcode-block" id="IsolationForestDetector">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IsolationForestDetector</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anomaly detector based on the Isolation Forest algorithm.</span>
+<span class="w">    </span><span class="sd">"""Anomaly detector based on the Isolation Forest algorithm.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    n_estimators : int, default=100</span>
 <span class="sd">        Number of base estimators in the ensemble.</span>
-<span class="sd">    max_samples : int, float or &#39;auto&#39;, default=&#39;auto&#39;</span>
+<span class="sd">    max_samples : int, float or 'auto', default='auto'</span>
 <span class="sd">        Samples to draw for each base estimator.</span>
-<span class="sd">    contamination : &#39;auto&#39; or float, default=&#39;auto&#39;</span>
+<span class="sd">    contamination : 'auto' or float, default='auto'</span>
 <span class="sd">        Expected proportion of outliers in the dataset.</span>
 <span class="sd">    random_state : int, RandomState or None, default=None</span>
 <span class="sd">        Controls randomness for reproducibility.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">=</span> <span class="n">max_samples</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contamination</span> <span class="o">=</span> <span class="n">contamination</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Create a fresh underlying IsolationForest from the wrapper settings."""</span>
+        <span class="k">return</span> <span class="n">IsolationForest</span><span class="p">(</span>
             <span class="n">n_estimators</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
             <span class="n">max_samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">,</span>
             <span class="n">contamination</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">contamination</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
         <span class="p">)</span>
+
+<div class="viewcode-block" id="IsolationForestDetector.set_params">
+<a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.set_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Synchronize estimator parameters with the underlying sklearn model."""</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">({</span><span class="s2">"n_estimators"</span><span class="p">,</span> <span class="s2">"max_samples"</span><span class="p">,</span> <span class="s2">"contamination"</span><span class="p">,</span> <span class="s2">"random_state"</span><span class="p">}):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
 
 <div class="viewcode-block" id="IsolationForestDetector.fit">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.fit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Fits the Isolation Forest model to the provided data.</span>
 
 <span class="sd">        Args:</span>
@@ -297,7 +311,7 @@
 <span class="sd">        Returns:</span>
 
 <span class="sd">            self: Returns the instance of the detector after fitting the model.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -305,7 +319,7 @@
 <div class="viewcode-block" id="IsolationForestDetector.predict">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.predict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Predicts the anomaly labels for the given input data using the Isolation Forest model.</span>
 
 <span class="sd">        Args:</span>
@@ -317,14 +331,14 @@
 
 <span class="sd">            array: An array of anomaly labels for each data point in X. The output is -1 for anomalies </span>
 <span class="sd">                   and 1 for normal points.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
         
 <div class="viewcode-block" id="IsolationForestDetector.decision_function">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.decision_function">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">decision_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Compute the anomaly score for the input data.</span>
 
 <span class="sd">        Args:</span>
@@ -335,14 +349,14 @@
 
 <span class="sd">            numpy.ndarray: The anomaly scores for each input sample. Lower scores</span>
 <span class="sd">            indicate more anomalous samples.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
         
 <div class="viewcode-block" id="IsolationForestDetector.fit_predict">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.fit_predict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Fits the Isolation Forest model to the data and predicts anomalies.</span>
 
 <span class="sd">        Args:</span>
@@ -356,14 +370,14 @@
 
 <span class="sd">            array: The anomaly scores for each sample. </span>
 <span class="sd">                -1 indicates an anomaly, and 1 indicates normal data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
         
 <div class="viewcode-block" id="IsolationForestDetector.get_anomalies">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.get_anomalies">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_anomalies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Get the anomalies in the dataset X.</span>
 <span class="sd">        </span>
 <span class="sd">        Args</span>
@@ -375,7 +389,7 @@
 <span class="sd">        </span>
 <span class="sd">            anomalies : array-like of shape (n_anomalies, n_features)</span>
 <span class="sd">            The anomalies found in the dataset.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">anomalies</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">anomalies</span></div>
@@ -384,8 +398,15 @@
 <div class="viewcode-block" id="IsolationForestDetector.predict_proba">
 <a class="viewcode-back" href="../../../api/detectors.html#sentinel.detectors.IsolationForestDetector.predict_proba">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Predict the probability of each sample being an anomaly.</span>
+
+<span class="sd">        The raw Isolation Forest decision score is already a calibrated measure</span>
+<span class="sd">        of how anomalous a sample is. A batch-wise min-max normalization makes the</span>
+<span class="sd">        result depend on the composition of the current prediction batch, which is</span>
+<span class="sd">        undesirable for a fitted detector. We convert the score to a stable</span>
+<span class="sd">        anomaly probability using a logistic transform that is independent of the</span>
+<span class="sd">        surrounding batch.</span>
 
 <span class="sd">        Args</span>
 <span class="sd">        </span>
@@ -396,14 +417,21 @@
 <span class="sd">        </span>
 <span class="sd">            proba : array-like of shape (n_samples,)</span>
 <span class="sd">                The probability of each sample being an anomaly.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">decision_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">proba</span> <span class="o">=</span> <span class="p">(</span><span class="n">decision_scores</span> <span class="o">-</span> <span class="n">decision_scores</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">decision_scores</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">decision_scores</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">proba</span></div>
+<span class="sd">        """</span>
+        <span class="n">decision_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">decision_scores</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">decision_scores</span> <span class="o">=</span> <span class="n">decision_scores</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Lower scores indicate more anomalous observations. Mapping the</span>
+        <span class="c1"># decision score through a sigmoid keeps the probability bounded in</span>
+        <span class="c1"># [0, 1] without depending on the current batch composition.</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="o">-</span><span class="n">decision_scores</span><span class="p">,</span> <span class="o">-</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">)</span>
+        <span class="n">proba</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logits</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">proba</span></div>
 </div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="c1"># Example usage</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -415,10 +443,10 @@
     <span class="n">anomalies</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">get_anomalies</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     <span class="n">proba</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictions:&quot;</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scores:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anomalies:&quot;</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anomaly Probabilities:&quot;</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Predictions:"</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Scores:"</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Anomalies:"</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Anomaly Probabilities:"</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
 </pre></div>
         </article>
       </div>

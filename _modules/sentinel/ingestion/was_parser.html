@@ -256,12 +256,12 @@
 <div class="viewcode-block" id="WASParser">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.WASParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">WASParser</span><span class="p">(</span><span class="n">BaseLogParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for WebSphere Application Server (WAS) log files.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parser for WebSphere Application Server (WAS) log files."""</span>
 
 <div class="viewcode-block" id="WASParser.parse">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.WASParser.parse">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the WAS log file into a structured DataFrame.</span>
+<span class="w">        </span><span class="sd">"""Parse the WAS log file into a structured DataFrame.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -272,28 +272,28 @@
 <span class="sd">            ``trama_uuid``, ``trama_rs``, ``process_transaction``,</span>
 <span class="sd">            ``connection_group``.</span>
 <span class="sd">            Returns an empty DataFrame if the file cannot be read.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"replace"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
                 <span class="n">raw_log</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-        <span class="n">log_lines</span> <span class="o">=</span> <span class="n">raw_log</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log_lines</span> <span class="o">=</span> <span class="n">raw_log</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">log_data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">current_log</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="n">regex_log</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2"> \d</span><span class="si">{2}</span><span class="s2">:\d</span><span class="si">{2}</span><span class="s2">:\d</span><span class="si">{2}</span><span class="s2">\.\d+)\] \[(\w+)\] \[WebContainer : \d+\] (\S+)&quot;</span>
-        <span class="n">regex_transaction_id</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;TRNUID=&quot;(\d+)&quot;&#39;</span>
-        <span class="n">regex_account_from</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&lt;ACCTFROM&gt;.*?&lt;ACCTID&gt;([\d-]+)&lt;/ACCTID&gt;&quot;</span>
-        <span class="n">regex_account_to</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&lt;ACCTTO&gt;.*?&lt;ACCTID&gt;([\d-]+)&lt;/ACCTID&gt;&quot;</span>
-        <span class="n">regex_amount</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&lt;TRNAMT&gt;(\d+\.\d+)&lt;/TRNAMT&gt;&quot;</span>
-        <span class="n">regex_response_code</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&lt;STATUS CODE=&quot;(\d+)&quot;&#39;</span>
-        <span class="n">regex_trama_rq</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;TramaRQ iSeries:(.*)&quot;</span>
-        <span class="n">regex_trama_uuid</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;TramaRQ UUID:([\w\d-]+)&quot;</span>
-        <span class="n">regex_trama_rs</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;TramaRS iSeries:(.*)&quot;</span>
-        <span class="n">regex_process_transaction</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;process transaction (\d+)&quot;</span>
-        <span class="n">regex_connection_group</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;ConnectionGroup: (\S+)&quot;</span>
+        <span class="n">regex_log</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\[(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2"> \d</span><span class="si">{2}</span><span class="s2">:\d</span><span class="si">{2}</span><span class="s2">:\d</span><span class="si">{2}</span><span class="s2">\.\d+)\] \[(\w+)\] \[WebContainer : \d+\] (\S+)"</span>
+        <span class="n">regex_transaction_id</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'TRNUID="(\d+)"'</span>
+        <span class="n">regex_account_from</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"&lt;ACCTFROM&gt;.*?&lt;ACCTID&gt;([\d-]+)&lt;/ACCTID&gt;"</span>
+        <span class="n">regex_account_to</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"&lt;ACCTTO&gt;.*?&lt;ACCTID&gt;([\d-]+)&lt;/ACCTID&gt;"</span>
+        <span class="n">regex_amount</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"&lt;TRNAMT&gt;(\d+\.\d+)&lt;/TRNAMT&gt;"</span>
+        <span class="n">regex_response_code</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'&lt;STATUS CODE="(\d+)"'</span>
+        <span class="n">regex_trama_rq</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"TramaRQ iSeries:(.*)"</span>
+        <span class="n">regex_trama_uuid</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"TramaRQ UUID:([\w\d-]+)"</span>
+        <span class="n">regex_trama_rs</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"TramaRS iSeries:(.*)"</span>
+        <span class="n">regex_process_transaction</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"process transaction (\d+)"</span>
+        <span class="n">regex_connection_group</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"ConnectionGroup: (\S+)"</span>
 
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_lines</span><span class="p">:</span>
             <span class="n">match_log</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">regex_log</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
@@ -301,32 +301,32 @@
                 <span class="k">if</span> <span class="n">current_log</span><span class="p">:</span>
                     <span class="n">log_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_log</span><span class="p">)</span>
                 <span class="n">current_log</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-                    <span class="s2">&quot;log_level&quot;</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-                    <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
-                    <span class="s2">&quot;transaction_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;account_from&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;account_to&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;response_code&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;trama_rq&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;trama_uuid&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;trama_rs&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;process_transaction&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s2">&quot;connection_group&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">"log_level"</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                    <span class="s2">"service"</span><span class="p">:</span> <span class="n">match_log</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+                    <span class="s2">"transaction_id"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"account_from"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"account_to"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"amount"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"response_code"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"trama_rq"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"trama_uuid"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"trama_rs"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"process_transaction"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">"connection_group"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="p">}</span>
 
             <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="p">{</span>
-                <span class="s2">&quot;transaction_id&quot;</span><span class="p">:</span> <span class="n">regex_transaction_id</span><span class="p">,</span>
-                <span class="s2">&quot;account_from&quot;</span><span class="p">:</span> <span class="n">regex_account_from</span><span class="p">,</span>
-                <span class="s2">&quot;account_to&quot;</span><span class="p">:</span> <span class="n">regex_account_to</span><span class="p">,</span>
-                <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">regex_amount</span><span class="p">,</span>
-                <span class="s2">&quot;response_code&quot;</span><span class="p">:</span> <span class="n">regex_response_code</span><span class="p">,</span>
-                <span class="s2">&quot;trama_rq&quot;</span><span class="p">:</span> <span class="n">regex_trama_rq</span><span class="p">,</span>
-                <span class="s2">&quot;trama_uuid&quot;</span><span class="p">:</span> <span class="n">regex_trama_uuid</span><span class="p">,</span>
-                <span class="s2">&quot;trama_rs&quot;</span><span class="p">:</span> <span class="n">regex_trama_rs</span><span class="p">,</span>
-                <span class="s2">&quot;process_transaction&quot;</span><span class="p">:</span> <span class="n">regex_process_transaction</span><span class="p">,</span>
-                <span class="s2">&quot;connection_group&quot;</span><span class="p">:</span> <span class="n">regex_connection_group</span><span class="p">,</span>
+                <span class="s2">"transaction_id"</span><span class="p">:</span> <span class="n">regex_transaction_id</span><span class="p">,</span>
+                <span class="s2">"account_from"</span><span class="p">:</span> <span class="n">regex_account_from</span><span class="p">,</span>
+                <span class="s2">"account_to"</span><span class="p">:</span> <span class="n">regex_account_to</span><span class="p">,</span>
+                <span class="s2">"amount"</span><span class="p">:</span> <span class="n">regex_amount</span><span class="p">,</span>
+                <span class="s2">"response_code"</span><span class="p">:</span> <span class="n">regex_response_code</span><span class="p">,</span>
+                <span class="s2">"trama_rq"</span><span class="p">:</span> <span class="n">regex_trama_rq</span><span class="p">,</span>
+                <span class="s2">"trama_uuid"</span><span class="p">:</span> <span class="n">regex_trama_uuid</span><span class="p">,</span>
+                <span class="s2">"trama_rs"</span><span class="p">:</span> <span class="n">regex_trama_rs</span><span class="p">,</span>
+                <span class="s2">"process_transaction"</span><span class="p">:</span> <span class="n">regex_process_transaction</span><span class="p">,</span>
+                <span class="s2">"connection_group"</span><span class="p">:</span> <span class="n">regex_connection_group</span><span class="p">,</span>
             <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>

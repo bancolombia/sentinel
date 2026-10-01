@@ -257,7 +257,7 @@
 <div class="viewcode-block" id="StringAggregator">
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.StringAggregator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StringAggregator</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flexible time-window aggregation for DataFrames with categorical data.</span>
+<span class="w">    </span><span class="sd">"""Flexible time-window aggregation for DataFrames with categorical data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -272,15 +272,15 @@
 <span class="sd">        If ``dataframe`` is not a DataFrame.</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If ``timestamp_column`` is not found in the DataFrame.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">timestamp_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input must be a pandas DataFrame&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Input must be a pandas DataFrame"</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="n">timestamp_column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column &#39;</span><span class="si">{</span><span class="n">timestamp_column</span><span class="si">}</span><span class="s2">&#39; not found in DataFrame&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Column '</span><span class="si">{</span><span class="n">timestamp_column</span><span class="si">}</span><span class="s2">' not found in DataFrame"</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">timestamp_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">timestamp_column</span><span class="p">])</span>
@@ -290,20 +290,20 @@
 <a class="viewcode-back" href="../../../api/transformer.html#sentinel.transformer.StringAggregator.create_time_aggregation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_time_aggregation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> 
-        <span class="n">time_window</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;5min&#39;</span><span class="p">,</span> 
+        <span class="n">time_window</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'5min'</span><span class="p">,</span> 
         <span class="n">column_metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">custom_metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">category_count_columns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Aggregate data over a time window with configurable metrics.</span>
+<span class="w">        </span><span class="sd">"""Aggregate data over a time window with configurable metrics.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        time_window : str, default=&#39;5min&#39;</span>
+<span class="sd">        time_window : str, default='5min'</span>
 <span class="sd">            Pandas offset alias for the grouping window.</span>
 <span class="sd">        column_metrics : dict, optional</span>
 <span class="sd">            Mapping of column names to lists of metrics (strings or callables).</span>
-<span class="sd">            Defaults to ``&#39;count&#39;`` and ``&#39;nunique&#39;`` for all non-timestamp columns.</span>
+<span class="sd">            Defaults to ``'count'`` and ``'nunique'`` for all non-timestamp columns.</span>
 <span class="sd">        custom_metrics : dict, optional</span>
 <span class="sd">            Global custom metrics as ``{name: callable}``.</span>
 <span class="sd">        category_count_columns : dict, optional</span>
@@ -318,10 +318,10 @@
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If a specified column does not exist in the DataFrame.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># Keep a copy of the timestamp so inner functions can access it</span>
         <span class="c1"># even after pd.Grouper consumes the column as the grouping key.</span>
-        <span class="n">ts_col_backup</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;__</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp_column</span><span class="si">}</span><span class="s2">_ts&quot;</span>
+        <span class="n">ts_col_backup</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"__</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp_column</span><span class="si">}</span><span class="s2">_ts"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">ts_col_backup</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp_column</span><span class="p">]</span>
 
         <span class="c1"># Group by time window</span>
@@ -333,7 +333,7 @@
         <span class="c1"># Default metrics if none provided</span>
         <span class="k">if</span> <span class="n">column_metrics</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">column_metrics</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">col</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">]</span> 
+                <span class="n">col</span><span class="p">:</span> <span class="p">[</span><span class="s1">'count'</span><span class="p">,</span> <span class="s1">'nunique'</span><span class="p">]</span> 
                 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> 
                 <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp_column</span>
             <span class="p">}</span>
@@ -341,18 +341,18 @@
         <span class="c1"># Apply per-column metrics</span>
         <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">column_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column &#39;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">&#39; not found in DataFrame&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Column '</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">' not found in DataFrame"</span><span class="p">)</span>
             
             <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
-                <span class="n">col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">"</span>
                 
                 <span class="c1"># Handle string metrics</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">'count'</span><span class="p">:</span>
                         <span class="n">results</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-                    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;nunique&#39;</span><span class="p">:</span>
+                    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">'nunique'</span><span class="p">:</span>
                         <span class="n">results</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-                    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span>
+                    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">'mode'</span><span class="p">:</span>
                         <span class="n">results</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
                 
                 <span class="c1"># Handle custom callable metrics</span>
@@ -363,10 +363,10 @@
         <span class="k">if</span> <span class="n">category_count_columns</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">categories</span> <span class="ow">in</span> <span class="n">category_count_columns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column &#39;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">&#39; not found in DataFrame&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Column '</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">' not found in DataFrame"</span><span class="p">)</span>
                 
                 <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
-                    <span class="n">col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">_count&quot;</span>
+                    <span class="n">col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">_count"</span>
                     <span class="n">results</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">==</span> <span class="n">category</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
         
         <span class="c1"># Time between events metrics (in seconds)</span>
@@ -392,9 +392,9 @@
             <span class="n">diffs</span> <span class="o">=</span> <span class="n">times</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">diffs</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
         
-        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;avg_time_between_events_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">avg_time_between_events</span><span class="p">)</span>
-        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;min_time_between_events_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">min_time_between_events</span><span class="p">)</span>
-        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;max_time_between_events_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">max_time_between_events</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'avg_time_between_events_seconds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">avg_time_between_events</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'min_time_between_events_seconds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">min_time_between_events</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'max_time_between_events_seconds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">max_time_between_events</span><span class="p">)</span>
         
         <span class="c1"># Apply global custom metrics</span>
         <span class="k">if</span> <span class="n">custom_metrics</span><span class="p">:</span>
@@ -402,7 +402,7 @@
                 <span class="n">results</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">metric_func</span><span class="p">)</span>
         
         <span class="c1"># Clean up the internal backup column</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">ts_col_backup</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">ts_col_backup</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
 </div>
@@ -414,50 +414,50 @@
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Para reproducibilidad</span>
     
     <span class="c1"># Generar timestamps con más densidad</span>
-    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;2min&#39;</span><span class="p">)</span>
+    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2024-01-01'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2024-01-02'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'2min'</span><span class="p">)</span>
     
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">timestamps</span><span class="p">,</span>
-        <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;web&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;desktop&#39;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)),</span>
-        <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)),</span>
-        <span class="s1">&#39;ip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;192.168.1.</span><span class="si">{</span><span class="n">i</span><span class="o">%</span><span class="mi">20</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))],</span>
-        <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))</span>
+        <span class="s1">'timestamp'</span><span class="p">:</span> <span class="n">timestamps</span><span class="p">,</span>
+        <span class="s1">'category'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">'web'</span><span class="p">,</span> <span class="s1">'mobile'</span><span class="p">,</span> <span class="s1">'desktop'</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)),</span>
+        <span class="s1">'level'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">'info'</span><span class="p">,</span> <span class="s1">'warning'</span><span class="p">,</span> <span class="s1">'error'</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)),</span>
+        <span class="s1">'ip'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'192.168.1.</span><span class="si">{</span><span class="n">i</span><span class="o">%</span><span class="mi">20</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))],</span>
+        <span class="s1">'response_time'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))</span>
     <span class="p">}</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     
     <span class="c1"># Crear instancia del agregador</span>
-    <span class="n">aggregator</span> <span class="o">=</span> <span class="n">StringAggregator</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+    <span class="n">aggregator</span> <span class="o">=</span> <span class="n">StringAggregator</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">'timestamp'</span><span class="p">)</span>
     
     <span class="c1"># Definir métricas personalizadas</span>
     <span class="n">column_metrics</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;ip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;nunique&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">]</span>
+        <span class="s1">'category'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'count'</span><span class="p">,</span> <span class="s1">'nunique'</span><span class="p">],</span>
+        <span class="s1">'level'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'count'</span><span class="p">,</span> <span class="s1">'mode'</span><span class="p">],</span>
+        <span class="s1">'ip'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'nunique'</span><span class="p">],</span>
+        <span class="s1">'response_time'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">]</span>
     <span class="p">}</span>
     
     <span class="c1"># Definir conteo por categorías</span>
     <span class="n">category_count_columns</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;web&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;desktop&#39;</span><span class="p">]</span>
+        <span class="s1">'level'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'info'</span><span class="p">,</span> <span class="s1">'warning'</span><span class="p">,</span> <span class="s1">'error'</span><span class="p">],</span>
+        <span class="s1">'category'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'web'</span><span class="p">,</span> <span class="s1">'mobile'</span><span class="p">,</span> <span class="s1">'desktop'</span><span class="p">]</span>
     <span class="p">}</span>
     
     <span class="c1"># Métrica personalizada global</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">count_high_latency</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;response_time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">'response_time'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     
     <span class="c1"># Realizar agregación</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">aggregator</span><span class="o">.</span><span class="n">create_time_aggregation</span><span class="p">(</span>
-        <span class="n">time_window</span><span class="o">=</span><span class="s1">&#39;5min&#39;</span><span class="p">,</span> 
+        <span class="n">time_window</span><span class="o">=</span><span class="s1">'5min'</span><span class="p">,</span> 
         <span class="n">column_metrics</span><span class="o">=</span><span class="n">column_metrics</span><span class="p">,</span>
         <span class="n">category_count_columns</span><span class="o">=</span><span class="n">category_count_columns</span><span class="p">,</span>
-        <span class="n">custom_metrics</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;high_latency_count&#39;</span><span class="p">:</span> <span class="n">count_high_latency</span><span class="p">}</span>
+        <span class="n">custom_metrics</span><span class="o">=</span><span class="p">{</span><span class="s1">'high_latency_count'</span><span class="p">:</span> <span class="n">count_high_latency</span><span class="p">}</span>
     <span class="p">)</span>
     
     <span class="c1"># Imprimir resultados</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">example_usage</span><span class="p">()</span>
 </pre></div>
         </article>

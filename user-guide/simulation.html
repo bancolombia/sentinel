@@ -471,10 +471,10 @@ static threshold.</p></li>
 <h2>Event overlay<a class="headerlink" href="#event-overlay" title="Link to this heading">¶</a></h2>
 <p>Pass an events DataFrame to overlay incident markers on the chart:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;2025-02-11 22:00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-02-11 23:59:00&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;2025-02-12 00:00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-02-12 00:11:00&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Server restart&quot;</span><span class="p">,</span> <span class="s2">&quot;Service outage&quot;</span><span class="p">],</span>
+    <span class="s2">"start"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"2025-02-11 22:00:00"</span><span class="p">,</span> <span class="s2">"2025-02-11 23:59:00"</span><span class="p">],</span>
+    <span class="s2">"end"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"2025-02-12 00:00:00"</span><span class="p">,</span> <span class="s2">"2025-02-12 00:11:00"</span><span class="p">],</span>
+    <span class="s2">"color"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"orange"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">],</span>
+    <span class="s2">"label"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Server restart"</span><span class="p">,</span> <span class="s2">"Service outage"</span><span class="p">],</span>
 <span class="p">})</span>
 
 <span class="n">sim</span> <span class="o">=</span> <span class="n">StreamingSimulation</span><span class="p">(</span>
@@ -555,7 +555,7 @@ streaming pipelines:</p>
     <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="c1"># Process chunk with your own logic</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows"</span><span class="p">)</span>
 
 <span class="n">manager</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>

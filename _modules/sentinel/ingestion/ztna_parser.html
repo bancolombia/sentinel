@@ -249,12 +249,12 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.ingestion.ztna_parser</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">ZTNA Log Parser</span>
 
 <span class="sd">Parser for Cloudflare Zero Trust Network Access (ZTNA) logs.</span>
 <span class="sd">Handles JSON format logs that may be concatenated without separators.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -263,30 +263,30 @@
 
 
 <span class="c1"># Pattern to match JSON objects in concatenated format</span>
-<span class="n">JSON_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\{[^</span><span class="si">{}</span><span class="s1">]*(?:\{[^</span><span class="si">{}</span><span class="s1">]*\}[^</span><span class="si">{}</span><span class="s1">]*)*\}&#39;</span><span class="p">)</span>
+<span class="n">JSON_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\{[^</span><span class="si">{}</span><span class="s1">]*(?:\{[^</span><span class="si">{}</span><span class="s1">]*\}[^</span><span class="si">{}</span><span class="s1">]*)*\}'</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ZTNAParser">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.ZTNAParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ZTNAParser</span><span class="p">(</span><span class="n">BaseLogParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    ZTNAParser is a log parser class that extends the BaseLogParser to parse </span>
 <span class="sd">    Zero Trust Network Access (ZTNA) logs from Cloudflare.</span>
 <span class="sd">    </span>
 <span class="sd">    The logs are in JSON format, often concatenated without separators.</span>
 <span class="sd">    Each log entry contains network traffic information including actions,</span>
 <span class="sd">    source/destination IPs, ports, user information, and policy details.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     
 <div class="viewcode-block" id="ZTNAParser.parse">
 <a class="viewcode-back" href="../../../api/ingestion.html#sentinel.ingestion.ZTNAParser.parse">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Reads the ZTNA log file, extracts JSON objects, and returns structured data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: A DataFrame containing the parsed log data with columns:</span>
-<span class="sd">                - Action: The action taken (e.g., &#39;blockByRule&#39;, &#39;allowedByRule&#39;)</span>
+<span class="sd">                - Action: The action taken (e.g., 'blockByRule', 'allowedByRule')</span>
 <span class="sd">                - Datetime: Timestamp of the event in ISO format</span>
 <span class="sd">                - DestinationIP: Destination IP address</span>
 <span class="sd">                - DestinationPort: Destination port number</span>
@@ -309,7 +309,7 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            Exception: If the file cannot be opened or read, returns empty DataFrame.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
         
         <span class="c1"># Retry logic for OneDrive timeouts</span>
@@ -318,27 +318,27 @@
         
         <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
                     <span class="n">raw_log</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                 <span class="k">break</span>  <span class="c1"># Success, exit retry loop</span>
                 
             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s2">&quot;Operation timed out&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;timed out&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">"Operation timed out"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"timed out"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
                     <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                         <span class="c1"># Retry after delay</span>
                         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">retry_delay</span><span class="p">)</span>
                         <span class="k">continue</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># Max retries reached, skip this file</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeout reading </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> after </span><span class="si">{</span><span class="n">max_retries</span><span class="si">}</span><span class="s2"> attempts, skipping...&quot;</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Timeout reading </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> after </span><span class="si">{</span><span class="n">max_retries</span><span class="si">}</span><span class="s2"> attempts, skipping..."</span><span class="p">)</span>
                         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># Other OS error</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
                     
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
         <span class="c1"># Extract all JSON objects from the concatenated log</span>
@@ -353,26 +353,26 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">log_entry</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                    <span class="s1">&#39;Action&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Action&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;Datetime&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Datetime&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;DestinationIP&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DestinationIP&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;DestinationPort&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DestinationPort&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;DeviceID&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DeviceID&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;DeviceName&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DeviceName&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;Email&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;PolicyID&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PolicyID&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;PolicyName&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PolicyName&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SessionID&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SessionID&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SourceIP&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SourceIP&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SourceIPCountryCode&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SourceIPCountryCode&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SourceInternalIP&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SourceInternalIP&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SourcePort&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SourcePort&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;TransportProtocol&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TransportProtocol&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;UserID&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UserID&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;SNI&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SNI&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;OverrideIP&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;OverrideIP&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;OverridePort&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;OverridePort&#39;</span><span class="p">),</span>
-                    <span class="s1">&#39;RegistrationID&#39;</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegistrationID&#39;</span><span class="p">)</span>
+                    <span class="s1">'Action'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">),</span>
+                    <span class="s1">'Datetime'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Datetime'</span><span class="p">),</span>
+                    <span class="s1">'DestinationIP'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'DestinationIP'</span><span class="p">),</span>
+                    <span class="s1">'DestinationPort'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'DestinationPort'</span><span class="p">),</span>
+                    <span class="s1">'DeviceID'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'DeviceID'</span><span class="p">),</span>
+                    <span class="s1">'DeviceName'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'DeviceName'</span><span class="p">),</span>
+                    <span class="s1">'Email'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Email'</span><span class="p">),</span>
+                    <span class="s1">'PolicyID'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PolicyID'</span><span class="p">),</span>
+                    <span class="s1">'PolicyName'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PolicyName'</span><span class="p">),</span>
+                    <span class="s1">'SessionID'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SessionID'</span><span class="p">),</span>
+                    <span class="s1">'SourceIP'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SourceIP'</span><span class="p">),</span>
+                    <span class="s1">'SourceIPCountryCode'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SourceIPCountryCode'</span><span class="p">),</span>
+                    <span class="s1">'SourceInternalIP'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SourceInternalIP'</span><span class="p">),</span>
+                    <span class="s1">'SourcePort'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SourcePort'</span><span class="p">),</span>
+                    <span class="s1">'TransportProtocol'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'TransportProtocol'</span><span class="p">),</span>
+                    <span class="s1">'UserID'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'UserID'</span><span class="p">),</span>
+                    <span class="s1">'SNI'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SNI'</span><span class="p">),</span>
+                    <span class="s1">'OverrideIP'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'OverrideIP'</span><span class="p">),</span>
+                    <span class="s1">'OverridePort'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'OverridePort'</span><span class="p">),</span>
+                    <span class="s1">'RegistrationID'</span><span class="p">:</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'RegistrationID'</span><span class="p">)</span>
                 <span class="p">})</span>
             <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
                 <span class="c1"># Skip malformed JSON entries</span>

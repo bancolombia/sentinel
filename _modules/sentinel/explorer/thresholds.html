@@ -249,7 +249,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sentinel.explorer.thresholds</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Configurable thresholds for data quality checks.&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Configurable thresholds for data quality checks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -258,7 +258,7 @@
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.Thresholds">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configurable thresholds for signal quality validation.</span>
+<span class="w">    </span><span class="sd">"""Configurable thresholds for signal quality validation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -274,7 +274,7 @@
 <span class="sd">        Minimum recall for single-feature logistic regression.</span>
 <span class="sd">    anomaly_pct_threshold : float</span>
 <span class="sd">        Minimum percentage of IQR anomalies expected.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">min_entries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span>
     <span class="n">min_non_null_pct</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">95.0</span>
@@ -286,16 +286,16 @@
 <div class="viewcode-block" id="Thresholds.default">
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.Thresholds.default">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">default</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Thresholds&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return default thresholds.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">default</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Thresholds"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return default thresholds."""</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Thresholds.strict">
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.Thresholds.strict">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">strict</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Thresholds&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return strict thresholds for high-quality data.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">strict</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Thresholds"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return strict thresholds for high-quality data."""</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">min_entries</span><span class="o">=</span><span class="mi">25000</span><span class="p">,</span>
             <span class="n">min_non_null_pct</span><span class="o">=</span><span class="mf">99.0</span><span class="p">,</span>
@@ -309,8 +309,8 @@
 <div class="viewcode-block" id="Thresholds.relaxed">
 <a class="viewcode-back" href="../../../api/explorer.html#sentinel.explorer.Thresholds.relaxed">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">relaxed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Thresholds&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return relaxed thresholds for exploratory analysis.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">relaxed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Thresholds"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return relaxed thresholds for exploratory analysis."""</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">min_entries</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
             <span class="n">min_non_null_pct</span><span class="o">=</span><span class="mf">80.0</span><span class="p">,</span>
