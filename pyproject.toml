@@ -1,6 +1,10 @@
+[build-system]
+requires = ["setuptools>=69", "wheel", "setuptools_scm[toml]>=8"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "sentinel"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Signal validation and anomaly detection for log data"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,3 +44,8 @@ all = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools_scm]
+version_file = "src/sentinel/_version.py"
+fallback_version = "1.0.1"
+tag_regex = "^v(?P<version>.*)$"
