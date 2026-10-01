@@ -335,8 +335,14 @@ class AutoencoderDetector:
 
             path (str): File path to save the model
         """
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        torch.save(self.model.state_dict(), path)
+        directory = os.path.dirname(path)
+        if directory:
+            os.makedirs(directory, exist_ok=True)
+        torch.save({
+            'model_state_dict': self.model.state_dict(),
+            'threshold': self.threshold,
+            'scaler': self.scaler,
+        }, path)
         
         
     def load_model(self, path):
@@ -347,4 +353,9 @@ class AutoencoderDetector:
         
             path (str): File path to load the model
         """
-        self.model.load_state_dict(torch.load(path))
+        checkpoint = torch.load(path, map_location=self.device, weights_only=False)
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        if 'threshold' in checkpoint:
+            self.threshold = checkpoint['threshold']
+        if 'scaler' in checkpoint:
+            self.scaler = checkpoint['scaler']

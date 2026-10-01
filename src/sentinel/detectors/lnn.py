@@ -393,7 +393,7 @@ class LNNDetector:
         
             path (str): File path to load the model
         """
-        checkpoint = torch.load(path)
+        checkpoint = torch.load(path, weights_only=False)
         self.model.load_state_dict(checkpoint['model_state_dict'])
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         self.threshold = checkpoint['threshold']
