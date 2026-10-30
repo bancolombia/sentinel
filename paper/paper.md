@@ -58,7 +58,7 @@ Sentinel addresses the earlier stage of the workflow: **determining whether a lo
  
 The ecosystem of anomaly detection software has expanded significantly in recent years. PyOD [@zhao2019pyod] provides a unified interface for a wide range of outlier detection algorithms. ADTK [@adtk2019] focuses on time-series anomaly detection using rule-based and statistical techniques. pySAD [@yilmaz2021pysad] addresses streaming anomaly detection scenarios, while TODS [@lai2021tods] introduces automated machine learning pipelines for time-series outlier detection. Anomalib [@akcay2022anomalib] provides deep learning architectures primarily targeting computer vision applications.
  
-In the context of log analysis, research has also explored specialized anomaly detection techniques such as DeepLog, which applies recurrent neural networks to learn sequential patterns in system logs [@du2017deeplog]. Public datasets such as LogHub provide standardized benchmarks for evaluating log anomaly detection approaches [@he2020loghub].
+In the context of log analysis, research has also explored specialized anomaly detection techniques such as DeepLog, which applies recurrent neural networks to learn sequential patterns in system logs [@du2017deeplog]. Public datasets such as LogHub provide standardized benchmarks for evaluating log anomaly detection approaches [@10301257].
  
 These tools and datasets have significantly advanced anomaly detection research. However, they typically assume that the dataset has already undergone preprocessing and validation. In many operational environments, the primary difficulty lies in determining whether the available logs contain sufficient information to justify anomaly detection.
  
@@ -76,7 +76,7 @@ Sentinel implements a modular architecture designed to support the complete life
 | **Transformer** | Prepare logs for analysis | Time aggregation, rolling statistics, feature generation |
 | **Explorer** | Validate signal presence before anomaly detection | IQR anomaly checks, variance thresholds, label validation, correlation analysis |
 | **Detectors** | Apply anomaly detection algorithms | Isolation Forest [@liu2008isolation], Robust Random Cut Forest [@guha2016rrcf], LSTM Autoencoder, Liquid Neural Networks [@hasani2021liquid] |
-| **Visualization** | Interpret anomaly detection outputs | Time-series anomaly visualization and SHAP-based explainability [@lundberg2017shap] |
+| **Visualization** | Interpret anomaly detection outputs | Time-series anomaly visualization and SHAP-based explainability [@lundberg2017unified] |
 | **Simulation** | Test streaming anomaly detection workflows | Real-time chunk processing and adaptive thresholds |
  
 The **Ingestion module** converts unstructured log files into structured tabular representations using pandas. Sentinel includes built-in parsers for enterprise systems such as WebSphere Application Server (WAS), Hardware Security Modules (HSM), High-Density Computing (HDC), IBM Message Queue (IBMMQ), and ZTNA logs. A base parser interface allows users to implement custom parsers for additional log formats.
